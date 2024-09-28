@@ -1,0 +1,22 @@
+SELECT
+      [Numero]
+      ,[DateCreation]
+      ,case [Source]
+	  when 0 then 'BNA'
+	    when 1 then 'BH'
+		when 2 then 'Zitouna'
+		when 3 then 'UIB'
+	    when 4 then 'Elbaraka'
+         when 5 then 'BIAT'
+		    when 6 then 'Attijari'
+        when 7 then 'Service'
+       when 8 then 'Vente'
+              when 9 then 'Autre'
+      when 10 then 'AnnulationAvance'
+        end as Source
+      ,[Montant]
+      ,[Commentaire]
+      ,[Tiers]
+      ,[Agriculteur_Id]
+      ,[Client_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[Alimentations] where YEAR(DateCreation)=2023

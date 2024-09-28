@@ -1,0 +1,5 @@
+Cette application console permet d'annuler un achat de type huile dans les cas suivants:
+- Achat non réglé 
+ou
+- Achat réglé espèce ou chèque ou traite et solde agriculteur = 0 (total achats = total avances)
+Le code achat doit commencer avec HLE et sa taille = 11

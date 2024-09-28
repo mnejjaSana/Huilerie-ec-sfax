@@ -1,0 +1,15 @@
+SELECT
+      [Date]
+      ,[Quantite]
+      ,case [article] 
+	  when 1 then 'Extra'
+	  when 2 then 'Fatoura'
+	  when 3 then 'Lampante'
+	  when 4 then 'Vierge'
+	  when 5 then 'ExtraVierge' end
+	  as[article]
+      ,[QuantitePileInitial]
+      ,[QuantitePileFinal]
+      ,[pile_Id]
+      ,[production_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[LigneStocks] where YEAR(date)=2023

@@ -1,0 +1,21 @@
+SELECT 
+      [Quantity]
+   
+	        ,case   [ArticleVente]
+	  when 1 then 'Extra'
+	  when 2 then 'Fatoura'
+	  when 3 then 'Lampante'
+	  when 4 then 'Vierge'
+	  when 5 then 'ExtraVierge' end
+	  as  [ArticleVente]
+
+      
+      ,[TVA]
+      ,[PrixHT]
+      ,[IdPile]
+      ,[NomPile]
+      ,[QuantitePileInitial]
+      ,[QuantitePileFinal]
+      ,[PrixMoyenPile]
+      ,[Vente_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[LigneVentes]

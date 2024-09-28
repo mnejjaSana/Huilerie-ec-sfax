@@ -1,0 +1,33 @@
+/****** Script de la commande SelectTopNRows à partir de SSMS  ******/
+SELECT
+      [Numero]  
+	  ,[NumClient]  
+      ,[IntituleClient]
+     ,(
+	 
+	  
+	   CASE  [EtatVente]
+        WHEN  3 THEN 'Reglee'
+        WHEN  1 THEN 'NonReglee'
+        WHEN  2 THEN 'PartiellementReglee'
+    END
+	 ) as EtatVente
+      ,[Date]
+    
+      ,[TotalHT]
+      ,[TotalTTC]
+      ,[QteVendue]
+      ,[MontantReglement]
+      ,[MontantRegle]
+      ,CASE [ModeReglement]
+	  WHEN 0 THEN 'Espèce' 
+	  WHEN 1 THEN 'Chèque'
+	  When 2 Then 'Traite' END as [ModeReglement]
+
+      ,[NumeroCheque]
+      ,[DateEcheance]
+      ,[Bank]
+      
+  FROM [HuileriesfaxProd1Makni].[dbo].[Ventes] 
+     where YEAR(date)=2023
+  

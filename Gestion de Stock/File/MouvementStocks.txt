@@ -1,0 +1,32 @@
+SELECT 
+      [Numero]
+      ,[QuantiteProduite]
+   
+      ,[QuantiteVendue]
+      ,[QuantiteSOD]
+      ,[Sens]
+      ,[Commentaire]
+      ,[Date]
+      ,case [Qualite] 
+	  when 1 then 'Extra'
+	  when 2 then 'Fatoura'
+	  when 3 then 'Lampante'
+	  when 4 then 'Vierge'
+	  when 5 then 'ExtraVierge' end
+	  as [Qualite] 
+
+
+       
+      ,[QuantitePileInitial]
+      ,[QuantitePileFinal]
+      ,[PrixMouvement]
+      ,[PMP]
+      ,[QteEntrante]
+      ,[QteSortante]
+      ,[Code]
+      ,[Intitulé]
+      ,[Achat_Id]
+      ,[pile_Id]
+      ,[Prod_Id]
+      ,[Vente_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[MouvementStocks] where YEAR(date)=2023

@@ -1,0 +1,20 @@
+/****** Script de la commande SelectTopNRows à partir de SSMS  ******/
+SELECT
+      [Numero]
+      ,[Date]
+         ,case [Sens]
+	  when 0 then 'Alimentation'
+	  when 1 then 'Depense'
+	  end as Sens
+      ,[Source]
+      ,[Commentaire]
+      ,[MontantSens]
+      ,[Montant]
+      ,[CodeTiers]
+      ,[Achat_Id]
+      ,[Agriculteur_Id]
+      ,[Client_Id]
+      ,[NatureDepense_Id]
+      ,[Salarie_Id]
+      ,[Vente_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[MouvementCaisses] where YEAR(date)=2023

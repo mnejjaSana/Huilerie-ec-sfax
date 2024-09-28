@@ -1,0 +1,5 @@
+Reglement Achats ( liste des Achats)
+-filtrage par date ( liste production )
+comparaison avec les Dates
+Reglement salarier (find)
+liste Achats ( comparaison c 'est bon )

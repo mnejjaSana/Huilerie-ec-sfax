@@ -1,0 +1,32 @@
+SELECT 
+      [NumeroProduction]
+      ,[NuméroBon]
+      ,[DateProd]
+      ,[DateFinProd]
+ 
+      ,
+	  case [Machine]
+	  when 0 then 'Chaine1'
+	  when 1 then 'Chaine2'
+	  end as [Machine]
+      , case [StatutProd]
+	  when 1 then 'EnAttente'  
+       when 2 then 'Encours'
+       when 3 then 'Terminée'
+	   when 4 then ' Stocké' end AS [StatutProd]
+        
+      ,[QuantiteHuile]
+      ,case [TypeAchat] 
+	  when 1 then 'Huile'
+        when 2 then 'Base' 
+       when 3 then  'Avance '
+       when 4 then  'Service' 
+       when 5 then  'Olive' end as [TypeAchat]
+      ,[RendementReel]
+      ,[QuantiteOlive]
+
+      ,[Emplacement_Id]
+      ,[PUTotal]
+      ,[RendementMoyenPrevu]
+      ,[DateOperation]
+  FROM [HuileriesfaxProd1Makni].[dbo].[Productions] where YEAR(DateFinProd)=2023

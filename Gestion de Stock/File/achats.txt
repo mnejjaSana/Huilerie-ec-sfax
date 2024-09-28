@@ -1,0 +1,160 @@
+
+SELECT
+    [Numero]
+      ,[Date]
+    
+	  ,case[TypeOlive]
+	  when 1 then 'OliveVif'
+        when 2 then 'Nchira'end  AS TypeOlive
+
+      ,case [TypeAchat] 
+	  when 1 then 'Huile'
+        when 2 then 'Base' 
+       when 3 then  'Avance '
+       when 4 then  'Service' 
+       when 5 then  'Olive' end as [TypeAchat]
+      ,[NbSacs]
+      ,[Poids]
+      ,[PrixLitre]
+      ,[QteLitre]
+      ,[QteRestStockhuile]
+      ,
+	   CASE  [EtatAchat]
+      
+        WHEN  1 THEN 'NonReglee'
+        WHEN  2 THEN 'PartiellementReglee'
+		  WHEN  3 THEN 'Reglee'
+    END
+	  as EtatAchat
+
+
+
+      ,[MontantReglement]
+      ,[MontantRegle]
+      ,case [StatutProd]
+	  when 1 then 'EnAttente'
+	    when 2 then 'Encours'
+		when 3 then 'Terminée'
+		when 4 then 'Stocké'
+	 end as StatutProd
+
+      ,[NuméroBon]
+      ,case [EtatAvance]
+	  when   1 then  'Consommée'
+	  when   2 then  ' PartiellementConsommée'
+	  when  3 then  ' NonConsommée'
+      end as EtatAvance
+     
+	  ,case [Qualite]
+	  when 1 then 'Extra'
+	  when 2 then 'Fatoura'
+	  when 3 then 'Lampante'
+	  when 4 then 'Vierge'
+	  when 5 then 'ExtraVierge' end
+	  as[Qualite]
+
+
+
+      ,[QteHuileAchetee]
+      ,[QteHuile]
+      ,[Annulle]
+      ,[AvanceAvecAchat]
+      ,[Avance]
+      ,[QteOliveAchetee]
+      ,[Rendement]
+      ,[PUOlive]
+      ,[PUOliveFinal]
+      ,[MontantOpPrev]
+      ,[Emplacement_Id]
+      ,[Founisseur_Id]
+      ,[Pile_Id]
+      ,CASE [ModeReglement]
+	  WHEN 0 THEN 'Espèce' 
+	  WHEN 1 THEN 'Chèque'
+	  When 2 Then 'Traite' END as [ModeReglement]
+      ,[NumeroCheque]
+      ,[DateEcheance]
+      ,[Banque]
+      ,[Coffre]
+      ,[AvecAmpo]
+      ,[MtAdeduire]
+      ,[MtAPayeAvecImpo]
+SELECT
+    [Numero]
+      ,[Date]
+    
+	  ,case[TypeOlive]
+	  when 1 then 'OliveVif'
+        when 2 then 'Nchira'end  AS TypeOlive
+
+      ,case [TypeAchat] 
+	  when 1 then 'Huile'
+        when 2 then 'Base' 
+       when 3 then  'Avance '
+       when 4 then  'Service' 
+       when 5 then  'Olive' end as [TypeAchat]
+      ,[NbSacs]
+      ,[Poids]
+      ,[PrixLitre]
+      ,[QteLitre]
+      ,[QteRestStockhuile]
+      ,
+	   CASE  [EtatAchat]
+      
+        WHEN  1 THEN 'NonReglee'
+        WHEN  2 THEN 'PartiellementReglee'
+		  WHEN  3 THEN 'Reglee'
+    END
+	  as EtatAchat
+
+
+
+      ,[MontantReglement]
+      ,[MontantRegle]
+      ,case [StatutProd]
+	  when 1 then 'EnAttente'
+	    when 2 then 'Encours'
+		when 3 then 'Terminée'
+		when 4 then 'Stocké'
+	 end as StatutProd
+
+      ,[NuméroBon]
+      ,case [EtatAvance]
+	  when   1 then  'Consommée'
+	  when   2 then  ' PartiellementConsommée'
+	  when  3 then  ' NonConsommée'
+      end as EtatAvance
+     
+	  ,case [Qualite]
+	  when 1 then 'Extra'
+	  when 2 then 'Fatoura'
+	  when 3 then 'Lampante'
+	  when 4 then 'Vierge'
+	  when 5 then 'ExtraVierge' end
+	  as[Qualite]
+
+      ,[QteHuileAchetee]
+      ,[QteHuile]
+      ,[Annulle]
+      ,[AvanceAvecAchat]
+      ,[Avance]
+      ,[QteOliveAchetee]
+      ,[Rendement]
+      ,[PUOlive]
+      ,[PUOliveFinal]
+      ,[MontantOpPrev]
+      ,[Emplacement_Id]
+      ,[Founisseur_Id]
+      ,[Pile_Id]
+      ,CASE [ModeReglement]
+	  WHEN 0 THEN 'Espèce' 
+	  WHEN 1 THEN 'Chèque'
+	  When 2 Then 'Traite' END as [ModeReglement]
+      ,[NumeroCheque]
+      ,[DateEcheance]
+      ,[Banque]
+      ,[Coffre]
+      ,[AvecAmpo]
+      ,[MtAdeduire]
+      ,[MtAPayeAvecImpo]
+  FROM [HuileriesfaxProd1Makni].[dbo].[Achats] where YEAR(Date)=2023 and Numero NOT LIKE 'AVN%'

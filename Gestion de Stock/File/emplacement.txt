@@ -1,0 +1,14 @@
+/****** Script de la commande SelectTopNRows à partir de SSMS  ******/
+SELECT 
+     [Numero]
+      ,[Intitule]
+      ,[Quantite]
+      ,case [Article]
+	  when 1 then 'OliveVif'
+        when 2 then 'Nchira'end  AS [Article]
+
+      ,[RENDEMENMOY]
+      ,[PrixMoyen]
+      ,[ValeurMasraf]
+      ,[LastPrixMoyen]
+  FROM [HuileriesfaxProd1Makni].[dbo].[Emplacements]

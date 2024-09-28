@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6A8BEE5-817D-433D-8895-D0D511EA5442}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Gestion_de_Stock</RootNamespace>
+    <AssemblyName>Gestion de Stock</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v17.2.Extensions, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\FrmAccueil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAccueil.Designer.cs">
+      <DependentUpon>FrmAccueil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAchats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAchats.Designer.cs">
+      <DependentUpon>FrmAchats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterAchats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterAchats.Designer.cs">
+      <DependentUpon>FrmAjouterAchats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterClient.Designer.cs">
+      <DependentUpon>FrmAjouterClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterFournisseur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterFournisseur.Designer.cs">
+      <DependentUpon>FrmAjouterFournisseur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterProduit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterProduit.Designer.cs">
+      <DependentUpon>FrmAjouterProduit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterUtilisateur.Designer.cs">
+      <DependentUpon>FrmAjouterUtilisateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAjouterVente.Designer.cs">
+      <DependentUpon>FrmAjouterVente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCaisse.Designer.cs">
+      <DependentUpon>FrmCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCaisseDepense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCaisseDepense.Designer.cs">
+      <DependentUpon>FrmCaisseDepense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmClient.Designer.cs">
+      <DependentUpon>FrmClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmFournisseur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmFournisseur.Designer.cs">
+      <DependentUpon>FrmFournisseur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmImportClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmImportClient.Designer.cs">
+      <DependentUpon>FrmImportClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmImportFournisseur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmImportFournisseur.Designer.cs">
+      <DependentUpon>FrmImportFournisseur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmProduits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmProduits.Designer.cs">
+      <DependentUpon>FrmProduits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmReleveeFournisseurs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmReleveeFournisseurs.Designer.cs">
+      <DependentUpon>FrmReleveeFournisseurs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSociete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSociete.Designer.cs">
+      <DependentUpon>FrmSociete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUtilisateur.Designer.cs">
+      <DependentUpon>FrmUtilisateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmVentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmVentes.Designer.cs">
+      <DependentUpon>FrmVentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWaitForm.Designer.cs">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWaitForm1.Designer.cs">
+      <DependentUpon>FrmWaitForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainRibbonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainRibbonForm.Designer.cs">
+      <DependentUpon>MainRibbonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101112255560_inti.cs" />
+    <Compile Include="Migrations\202101112255560_inti.designer.cs">
+      <DependentUpon>202101112255560_inti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Achat.cs" />
+    <Compile Include="Model\ApplicationContext.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Fournisseur.cs" />
+    <Compile Include="Model\LigneAchats.cs" />
+    <Compile Include="Model\ligneVentes.cs" />
+    <Compile Include="Model\Produit.cs" />
+    <Compile Include="Model\Societe.cs" />
+    <Compile Include="Model\Utilisateur.cs" />
+    <Compile Include="Model\Vente.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repport\EtatCaisseDepense.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Repport\EtatCaisseDepense.Designer.cs">
+      <DependentUpon>EtatCaisseDepense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repport\EtatReleveeFournisseurs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Repport\EtatReleveeFournisseurs.Designer.cs">
+      <DependentUpon>EtatReleveeFournisseurs.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\FrmAccueil.resx">
+      <DependentUpon>FrmAccueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAchats.resx">
+      <DependentUpon>FrmAchats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAjouterAchats.resx">
+      <DependentUpon>FrmAjouterAchats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAjouterClient.resx">
+      <DependentUpon>FrmAjouterClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAjouterFournisseur.resx">
+      <DependentUpon>FrmAjouterFournisseur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAjouterProduit.resx">
+      <DependentUpon>FrmAjouterProduit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAjouterUtilisateur.resx">
+      <DependentUpon>FrmAjouterUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAjouterVente.resx">
+      <DependentUpon>FrmAjouterVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCaisse.resx">
+      <DependentUpon>FrmCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCaisseDepense.resx">
+      <DependentUpon>FrmCaisseDepense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmClient.resx">
+      <DependentUpon>FrmClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmFournisseur.resx">
+      <DependentUpon>FrmFournisseur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmImportClient.resx">
+      <DependentUpon>FrmImportClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmImportFournisseur.resx">
+      <DependentUpon>FrmImportFournisseur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmProduits.resx">
+      <DependentUpon>FrmProduits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmReleveeFournisseurs.resx">
+      <DependentUpon>FrmReleveeFournisseurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSociete.resx">
+      <DependentUpon>FrmSociete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUtilisateur.resx">
+      <DependentUpon>FrmUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWaitForm.resx">
+      <DependentUpon>FrmWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWaitForm1.resx">
+      <DependentUpon>FrmWaitForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainRibbonForm.resx">
+      <DependentUpon>MainRibbonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101112255560_inti.resx">
+      <DependentUpon>202101112255560_inti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmAccueil.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmAjouterClient.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmAjouterFournisseur.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmAjouterProduit.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmAjouterUtilisateur.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmCaisse.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmCaisseDepense.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmClient.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmFournisseur.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmProduits.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmSociete.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmUtilisateur.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmWaitForm+WaitFormCommand.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Forms.FrmWaitForm.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Migrations.Configuration.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Migrations.inti.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Model.Client.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Model.Fournisseur.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Model.Produit.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Model.Utilisateur.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Properties.Settings.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ak-un-ico-de-luxe-d-blanc-de-logo-de-lettre-d-alphabet-d-jaune-de-k-89096996.jpg" />
+    <Content Include="Resources\AKcompany.ico" />
+    <Content Include="Resources\AKcompany.PNG" />
+    <Content Include="Resources\banque.png" />
+    <Content Include="Resources\téléchargement.png" />
+    <None Include="Resources\téléchargement1.png" />
+    <None Include="Resources\partenaires1.png" />
+    <None Include="Resources\parametres1.png" />
+    <None Include="Resources\journaux1.png" />
+    <None Include="Resources\informations1.png" />
+    <None Include="Resources\icons-certificationx481.png" />
+    <None Include="Resources\icons-certificationV48.png" />
+    <None Include="Resources\famille-immobilisations1.png" />
+    <None Include="Resources\famille-contact1.png" />
+    <None Include="Resources\famille-articles1.png" />
+    <None Include="Resources\calendrier1.png" />
+    <None Include="Resources\banque1.png" />
+    <Content Include="Resources\calendrier.png" />
+    <Content Include="Resources\famille-articles.png" />
+    <Content Include="Resources\famille-contact.png" />
+    <Content Include="Resources\famille-immobilisations.png" />
+    <Content Include="Resources\icons-certificationx48.png" />
+    <Content Include="Resources\informations.png" />
+    <Content Include="Resources\journaux.png" />
+    <Content Include="Resources\parametres.png" />
+    <Content Include="Resources\partenaires.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

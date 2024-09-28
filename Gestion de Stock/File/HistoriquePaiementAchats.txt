@@ -1,0 +1,15 @@
+SELECT 
+      [DateCreation]
+      ,[NumAchat]
+      ,case [TypeAchat] 
+	  when 1 then 'Huile'
+        when 2 then 'Base' 
+       when 3 then  'Avance '
+       when 4 then  'Service' 
+       when 5 then  'Olive' end as [TypeAchat]
+      ,[MontantReglement]
+      ,[MontantRegle]
+      ,[ResteApayer]
+      ,[Commentaire]
+      ,[Founisseur_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[HistoriquePaiementAchats] where YEAR(DateCreation)=2023

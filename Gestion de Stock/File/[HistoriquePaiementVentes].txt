@@ -1,0 +1,21 @@
+SELECT  
+      [DateCreation]
+      ,[NumVente]
+      ,[IdVente]
+      ,[IdClient]
+      ,[IntituleClient]
+      ,[NumClient]
+     ,CASE [ModeReglement]
+	  WHEN 0 THEN 'Espèce' 
+	  WHEN 1 THEN 'Chèque'
+	  When 2 Then 'Traite' END as [ModeReglement]
+
+      ,[MontantReglement]
+      ,[MontantRegle]
+      ,[ResteApayer]
+      ,[NumCheque]
+      ,[DateEcheance]
+      ,[Bank]
+      ,[Coffre]
+      ,[Commentaire]
+  FROM [HuileriesfaxProd1Makni].[dbo].[HistoriquePaiementVentes] where YEAR(DateCreation)=2023

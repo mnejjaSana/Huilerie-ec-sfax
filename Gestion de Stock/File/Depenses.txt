@@ -1,0 +1,24 @@
+
+SELECT
+      [DateCreation]
+      ,[Numero]
+      ,case [Nature]
+	  when 1 then  'Salarié'
+	   when 2 then  'Prélèvement'
+      when 3 then  'Autre'
+       when 4 then  'AchatOlive'
+           when 5 then  'AvanceAgriculteur'
+    when 6 then  'ClôtureCaisse'
+        when 7 then  'ModificationService'    
+       when 8 then  'AchatHuile'    end as Nature
+      ,[Montant]
+      ,[Commentaire]
+      ,[ModePaiement]
+      ,[Tiers]
+      ,[Bank]
+      ,[DateEcheance]
+      ,[NumCheque]
+      ,[CodeTiers]
+      ,[Agriculteur_Id]
+      ,[Salarie_Id]
+  FROM [HuileriesfaxProd1Makni].[dbo].[Depenses] where YEAR(DateCreation)=2023
