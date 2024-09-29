@@ -204,7 +204,7 @@
             this.colMTReg.FieldName = "MontantReglement";
             this.colMTReg.Name = "colMTReg";
             this.colMTReg.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MontantReglement", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MontantReglement", "={0:0.##}")});
             this.colMTReg.Visible = true;
             this.colMTReg.VisibleIndex = 2;
             this.colMTReg.Width = 302;
@@ -227,6 +227,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
             this.BtnSupprimer.Name = "BtnSupprimer";
             this.BtnSupprimer.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+             this.BtnSupprimer.Click += new System.EventHandler(this.BtnSupprimer_Click_1);
             // 
             // TxtAvance
             // 
@@ -552,7 +553,6 @@
         public DevExpress.XtraEditors.TextEdit TxtMontantOperation;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlMtAPayer;
         private System.Windows.Forms.BindingSource personnePassagerBindingSource;
-        private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colCIN;
         private DevExpress.XtraGrid.Columns.GridColumn colMTReg;
@@ -562,5 +562,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraGrid.Columns.GridColumn colFullname;
+        public DevExpress.XtraGrid.GridControl gridControl1;
     }
 }

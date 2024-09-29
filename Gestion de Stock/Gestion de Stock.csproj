@@ -708,6 +708,14 @@
     <Compile Include="Migrations\202311200832311_ste service.designer.cs">
       <DependentUpon>202311200832311_ste service.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202409281912239_personne.cs" />
+    <Compile Include="Migrations\202409281912239_personne.designer.cs">
+      <DependentUpon>202409281912239_personne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409291928170_mtdeduit.cs" />
+    <Compile Include="Migrations\202409291928170_mtdeduit.designer.cs">
+      <DependentUpon>202409291928170_mtdeduit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Achat.cs" />
     <Compile Include="Model\Affaire.cs" />
@@ -749,6 +757,7 @@
     <Compile Include="Model\MouvementStock.cs" />
     <Compile Include="Model\MouvementStockOlive.cs" />
     <Compile Include="Model\NumeriqueHelper.cs" />
+    <Compile Include="Model\Personne Passager.cs" />
     <Compile Include="Model\Pile.cs" />
     <Compile Include="Model\PileEmplacement.cs" />
     <Compile Include="Model\PileRapport.cs" />
@@ -1182,6 +1191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311200832311_ste service.resx">
       <DependentUpon>202311200832311_ste service.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409281912239_personne.resx">
+      <DependentUpon>202409281912239_personne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409291928170_mtdeduit.resx">
+      <DependentUpon>202409291928170_mtdeduit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

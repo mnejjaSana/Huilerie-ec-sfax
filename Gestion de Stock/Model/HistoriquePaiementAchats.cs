@@ -25,5 +25,8 @@ namespace Gestion_de_Stock.Model
         public decimal MontantRegle { get; set; }
         public decimal ResteApayer { get; set; }
         public string Commentaire { get; set; }
+        public bool AvecAmpoAjouterREG { get; set; }
+        public decimal MtAdeduireAjouterREG { get; set; }
+        public decimal MtAPayeAvecImpoAjouterREG { get; set; }
     }
 }

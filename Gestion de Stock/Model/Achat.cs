@@ -193,5 +193,7 @@ namespace Gestion_de_Stock.Model
         public string Prenom { get; set; }
 
         public string CIN { get; set; }
+ 
+     
     }
 }
