@@ -61,12 +61,14 @@ namespace Gestion_de_Stock.Forms
             Caisse caisse = db.Caisse.FirstOrDefault();
 
             //int idAchat = int.Parse(TxtCodeAchat.Text);
-
-           
-
             decimal MontantEncaisse;
             string MontantEncaisseStr = TxtMontantEncaisse.Text.Replace(",", decimalSeparator).Replace(".", decimalSeparator);
             decimal.TryParse(MontantEncaisseStr, out MontantEncaisse);
+
+
+            decimal MontantOperation;
+            string MontantOperationStr = TxtMontantOperation.Text.Replace(",", decimalSeparator).Replace(".", decimalSeparator);
+            decimal.TryParse(MontantOperationStr, out MontantOperation);
 
             decimal Solde;
             string SoldeStr = TxtSolde.Text.Replace(",", decimalSeparator).Replace(".", decimalSeparator);
@@ -141,7 +143,7 @@ namespace Gestion_de_Stock.Forms
             ////  decimal MontantTotal = Achat.MontantReglement;
             //decimal MontantTotal = Achat.MtAPayeAvecImpo;
             //db.SaveChanges();
-            decimal MontantTotalAjouterREG = HP.MontantReglement;
+            decimal MontantTotalAjouterREG = MontantOperation;
             db.SaveChanges();
             //if (Achat.MontantRegle == MontantTotal && Achat.ResteApayer == 0)
             if (HP.MontantRegle == MontantTotalAjouterREG && HP.ResteApayer == 0)
