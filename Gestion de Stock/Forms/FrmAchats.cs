@@ -1,6 +1,5 @@
 ﻿using Convertisseur;
 using Convertisseur.Entite;
-using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout.Utils;
@@ -74,7 +73,7 @@ namespace Gestion_de_Stock.Forms
                     decimal SoldeAgriculteur = decimal.Add(decimal.Subtract(decimal.Subtract(l.TotalAvances, l.TotalAchats), l.Solde), TotalDeduit);
                     l.SoldeAgriculteur = SoldeAgriculteur == 0 ? l.Solde : SoldeAgriculteur;
                 }
-                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
             }
             /********************** Date aujourd'hui************************/
             dateEditDateFacture.DateTime = DateTime.Now;
@@ -103,23 +102,23 @@ namespace Gestion_de_Stock.Forms
             /***********************  TypeAchat Liste  ***********************/
             List<string> ListeTypeAchat = Enum.GetNames(typeof(TypeAchat)).ToList();
 
-            
+
 
             Societe ste = db.Societe.FirstOrDefault();
 
-            if(Types.Count>0)
+            if (Types.Count > 0)
             {
                 Types.Clear();
             }
 
-            if(ste.AchatOlive && ste.AchatHuile && ste.AchatBase && ste.Service)
+            if (ste.AchatOlive && ste.AchatHuile && ste.AchatBase && ste.Service)
             {
                 Types.Add(ListeTypeAchat[4]); // olive
                 Types.Add(ListeTypeAchat[1]);// base
                 Types.Add(ListeTypeAchat[0]);// huile
                 Types.Add(ListeTypeAchat[2]);//Avance
                 Types.Add(ListeTypeAchat[3]);// service
-               
+
 
             }
             else if (ste.AchatOlive && !ste.AchatHuile && !ste.AchatBase && !ste.Service)
@@ -140,7 +139,7 @@ namespace Gestion_de_Stock.Forms
             else if (!ste.AchatOlive && !ste.AchatHuile && !ste.AchatBase && ste.Service)
             {
                 Types.Add(ListeTypeAchat[3]);// service
-                
+
             }
             else if (ste.AchatOlive && ste.AchatHuile && !ste.AchatBase && !ste.Service)
             {
@@ -196,7 +195,7 @@ namespace Gestion_de_Stock.Forms
             {
                 Types.Add(ListeTypeAchat[0]);// huile
                 Types.Add(ListeTypeAchat[4]); // olive
-             
+
                 Types.Add(ListeTypeAchat[2]);//Avance
                 Types.Add(ListeTypeAchat[3]);// service
 
@@ -222,7 +221,7 @@ namespace Gestion_de_Stock.Forms
             {
                 comboBoxTypeAchat.SelectedItem = Types[0];
             }
-            
+
             /*************** Qualité Huile ***************/
             List<string> ListeArticle = Enum.GetNames(typeof(ArticleVente)).Where(item => item != ArticleVente.Fatoura.ToString()).ToList();
             if (ListeArticle != null)
@@ -240,8 +239,8 @@ namespace Gestion_de_Stock.Forms
             }
 
             ///***********************  Emplacements  ***********************/
-            emplacementBindingSource.DataSource = db.Emplacements.Where(x => x.Article == ArticleAchat.OliveVif).AsEnumerable().Select(x => new { x.Id, x.Numero, x.Intitule, x.Quantite, x.Article, RENDEMENMOY = Math.Truncate(x.RENDEMENMOY * 1000m) / 1000m , ValeurMasraf = Math.Truncate(x.ValeurMasraf * 1000m) / 1000m }).ToList();
-            
+            emplacementBindingSource.DataSource = db.Emplacements.Where(x => x.Article == ArticleAchat.OliveVif).AsEnumerable().Select(x => new { x.Id, x.Numero, x.Intitule, x.Quantite, x.Article, RENDEMENMOY = Math.Truncate(x.RENDEMENMOY * 1000m) / 1000m, ValeurMasraf = Math.Truncate(x.ValeurMasraf * 1000m) / 1000m }).ToList();
+
 
             ///***********************  Mode  Paiement Liste  ***********************/
             List<string> ModePaiement = Enum.GetNames(typeof(ModeReglement)).ToList();
@@ -366,14 +365,14 @@ namespace Gestion_de_Stock.Forms
                 if (string.IsNullOrEmpty(TxtMontantReglement.Text))
                 {
                     TxtMontantReglement.ErrorText = "Montant Opération est obligatoire";
-                  
+
                     return;
 
                 }
 
                 int QteOliveAchetee = Convert.ToInt32(TxtQteOlive.Text);
 
-                if (QteOliveAchetee<=0)
+                if (QteOliveAchetee <= 0)
                 {
                     XtraMessageBox.Show("Veuillez Vérifier la quantité Olive Acheetée", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TxtQteOlive.ErrorText = "Vérifier la quantité Olive Acheetée";
@@ -686,6 +685,9 @@ namespace Gestion_de_Stock.Forms
 
                 db.SaveChanges();
 
+
+
+                //sirine
                 if (MontantRegle > 0)
                 {
                     Achat AvnaceSurAchat = new Achat();
@@ -703,6 +705,9 @@ namespace Gestion_de_Stock.Forms
                     F.Solde = Decimal.Add(F.Solde, MontantRegle);
                     db.SaveChanges();
                 }
+
+
+
                 #region Ajouter Mouvement Olive 
 
                 decimal RendementMov;
@@ -841,15 +846,15 @@ namespace Gestion_de_Stock.Forms
                 }
                 if (Application.OpenForms.OfType<FrmFournisseur>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmFournisseur>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.Select(x => new { x.Id, x.Numero, x.Nom, x.Prenom, x.Tel, x.cin,x.TotalAchats, x.TotalAvances, x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmFournisseur>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.Select(x => new { x.Id, x.Numero, x.Nom, x.Prenom, x.Tel, x.cin, x.TotalAchats, x.TotalAvances, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
                 if (Application.OpenForms.OfType<FrmAchats>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
-                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
 
 
                 if (Application.OpenForms.OfType<FrmListedesAvances>().FirstOrDefault() != null)
@@ -1059,6 +1064,7 @@ namespace Gestion_de_Stock.Forms
                 A.Numero = "ACH" + (A.Id).ToString("D8");
                 db.SaveChanges();
 
+                //sirine
                 if (A.TypeAchat == TypeAchat.Base && MontantRegle > 0)
                 {
                     Achat AvnaceSurAchat = new Achat();
@@ -1183,15 +1189,15 @@ namespace Gestion_de_Stock.Forms
                     }
                     if (Application.OpenForms.OfType<FrmFournisseur>().FirstOrDefault() != null)
                     {
-                        Application.OpenForms.OfType<FrmFournisseur>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.Select(x => new { x.Id, x.Nom, x.Numero, x.cin,x.Prenom, x.Tel, x.TotalAchats, x.TotalAvances, x.SoldeAgriculteurAvecSens }).ToList();
+                        Application.OpenForms.OfType<FrmFournisseur>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.Select(x => new { x.Id, x.Nom, x.Numero, x.cin, x.Prenom, x.Tel, x.TotalAchats, x.TotalAvances, x.SoldeAgriculteurAvecSens }).ToList();
                     }
 
                     if (Application.OpenForms.OfType<FrmAchats>().FirstOrDefault() != null)
                     {
-                        Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                        Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                     }
 
-                    fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                    fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
 
 
                     if (Application.OpenForms.OfType<FrmListedesAvances>().FirstOrDefault() != null)
@@ -1201,7 +1207,7 @@ namespace Gestion_de_Stock.Forms
 
                     if (Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault() != null)
                     {
-                        Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault().agriculteurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                        Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault().agriculteurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                     }
 
                     #region ajouter Depense type achat base
@@ -1509,9 +1515,11 @@ namespace Gestion_de_Stock.Forms
                 }
 
                 if (Application.OpenForms.OfType<FrmMasrafProduction>().FirstOrDefault() != null)
+                {
                     Application.OpenForms.OfType<FrmMasrafProduction>().First().searchLookUpPile.Properties.DataSource = db.Piles.Where(x => x.CapaciteMax > x.Capacite && x.article != ArticleVente.Fatoura).ToList();
+                }
 
-
+                //sirine
                 if (MontantRegle > 0)
                 {
                     Achat AvnaceSurAchat = new Achat();
@@ -1629,15 +1637,15 @@ namespace Gestion_de_Stock.Forms
 
                 if (Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault().agriculteurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault().agriculteurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
                 if (Application.OpenForms.OfType<FrmAchats>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
-                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
 
 
                 if (Application.OpenForms.OfType<FrmListedesAvances>().FirstOrDefault() != null)
@@ -1817,7 +1825,7 @@ namespace Gestion_de_Stock.Forms
                 A.TypeAchat = TypeAchat.Service;
 
                 A.PrixLitre = 0;
-               
+
 
                 if (MontantRegle == MontantReglement && MontantReglement != 0)
                 {
@@ -1961,20 +1969,82 @@ namespace Gestion_de_Stock.Forms
 
                 }
 
+
+
+                // new work
+                decimal MontantRegleFinal = 0m;
+                List<Personne_Passager> ListePassagers = new List<Personne_Passager>();
+
+                if (MontantRegle >= 3000)
+                {
+                    decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
+
+                    MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
+
+
+                    int row = 0;
+
+                    while (gridView4.IsValidRowHandle(row))
+                    {
+                        var data = gridView4.GetRow(row) as Personne_Passager;
+                        ListePassagers.Add(data);
+                        row++;
+                    }
+                    if (ListePassagers.Count == 0)
+                    {
+                        XtraMessageBox.Show("Merci d'ajouter des personnes", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    else
+                    {
+                        decimal totalGrid = ListePassagers.Sum(x => x.MontantReglement);
+
+                        if (totalGrid == MontantRegle)
+                        {
+                            MontantRegle = MontantRegleFinal;
+
+                            foreach (var item in ListePassagers)
+                            {
+                                A.PersonnesPassagers.Add(
+                                  new Personne_Passager { FullName = item.FullName, cin = item.cin, MontantReglement = item.MontantReglement });
+                            }
+
+
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
+                }
+
                 A.TypeAchat = TypeAchat.Avance;
                 A.Avance = true;
                 A.NuméroBon = null;
                 A.Annulle = "Non";
                 A.PrixLitre = 0;
-                A.MontantRegle = MontantRegle;
+
                 A.MontantReglement = 0;
                 A.NbSacs = 0;
                 A.AvanceAvecAchat = 0;
-                F.Solde = Decimal.Add(F.Solde, MontantRegle);
+                A.MontantRegle = MontantRegle;
+
+                F.Solde = decimal.Add(F.Solde, MontantRegle);
+
                 db.Achats.Add(A);
                 db.SaveChanges();
                 A.Numero = "AVN" + (A.Id).ToString("D8");
                 db.SaveChanges();
+
+                if(A.PersonnesPassagers!=null)
+                {
+                    foreach(var item in A.PersonnesPassagers)
+                    {
+                        item.Numero = A.Numero;
+                        db.SaveChanges();
+                    }
+                }
 
                 #region Ajouter Littrage Avance Sur Achats Type avance
 
@@ -2071,20 +2141,20 @@ namespace Gestion_de_Stock.Forms
 
                 if (Application.OpenForms.OfType<FrmFournisseur>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmFournisseur>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.Select(x => new { x.Id, x.Nom, x.Numero, x.Prenom, x.cin,x.Tel, x.TotalAchats, x.TotalAvances, x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmFournisseur>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.Select(x => new { x.Id, x.Nom, x.Numero, x.Prenom, x.cin, x.Tel, x.TotalAchats, x.TotalAvances, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
                 if (Application.OpenForms.OfType<FrmAchats>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmAchats>().First().fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
                 if (Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault() != null)
                 {
-                    Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault().agriculteurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                    Application.OpenForms.OfType<FrmAnnulationAvance>().FirstOrDefault().agriculteurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
                 }
 
-                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
 
                 if (Application.OpenForms.OfType<FrmListedesAvances>().FirstOrDefault() != null)
                 {
@@ -2107,7 +2177,7 @@ namespace Gestion_de_Stock.Forms
                 {
                     D.ModePaiement = "Chèque";
                     D.Bank = A.Banque;
-                    D.DateEcheance= A.DateEcheance;
+                    D.DateEcheance = A.DateEcheance;
                     D.NumCheque = A.NumeroCheque;
                 }
                 else if (A.ModeReglement == ModeReglement.Traite)
@@ -2117,6 +2187,8 @@ namespace Gestion_de_Stock.Forms
                     D.DateEcheance = A.DateEcheance;
                     D.NumCheque = A.NumeroCheque;
                 }
+
+
                 D.Montant = MontantRegle;
                 D.Tiers = A.Founisseur.FullName;
                 D.Commentaire = "Avance Agriculteur";
@@ -2214,8 +2286,38 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAvance))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
+
+                if (A.PersonnesPassagers != null)
+                {
+                    foreach (var item in A.PersonnesPassagers)
+                    {
+                        XrAvancePersonne xrAvancePersonne = new XrAvancePersonne();
+
+
+                        xrAvancePersonne.Parameters["RsSte"].Value = societedb.RaisonSocial;
+
+                        xrAvancePersonne.Parameters["RsSte"].Visible = false;
+                        xrAvancePersonne.Parameters["NumAvn"].Value = A.Numero;
+
+                        List<Personne_Passager> personnes = new List<Personne_Passager>();
+
+                        personnes.Add(item);
+
+                        xrAvancePersonne.DataSource = personnes;
+                        using (ReportPrintTool printTool = new ReportPrintTool(xrAvancePersonne))
+                        {
+                            printTool.ShowPreviewDialog();
+
+                        }
+
+                    }
+                }
+
+
+
+
 
 
             }
@@ -2284,7 +2386,7 @@ namespace Gestion_de_Stock.Forms
                 {
                     Application.OpenForms.OfType<FrmEmplacement>().First().emplacementBindingSource.DataSource = db.Emplacements.ToList();
                 }
-                
+
             }
             else if (A.TypeAchat == TypeAchat.Service)
             {
@@ -2323,7 +2425,7 @@ namespace Gestion_de_Stock.Forms
             List<string> ListeTypeOlive = Enum.GetNames(typeof(ArticleAchat)).ToList();
             comboBoxTypeOlive.SelectedItem = ListeTypeOlive[0];
 
-           //type achat
+            //type achat
             comboBoxTypeAchat.SelectedItem = Types[0];
 
             List<string> ListeArticle = Enum.GetNames(typeof(ArticleVente)).Where(item => item != ArticleVente.Fatoura.ToString()).ToList();
@@ -2391,11 +2493,9 @@ namespace Gestion_de_Stock.Forms
                 db.SaveChanges();
 
                 if (Application.OpenForms.OfType<FrmCoffreChequeEmis>().FirstOrDefault() != null)
+                {
                     Application.OpenForms.OfType<FrmCoffreChequeEmis>().First().coffrechequeBindingSource.DataSource = db.CoffreCheques.ToList();
-
-
-
-
+                }
             }
             #endregion
 
@@ -2423,7 +2523,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(ticketService))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
             }
             else if (A.TypeAchat == TypeAchat.Base)
@@ -2451,7 +2551,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -2490,7 +2590,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -2527,7 +2627,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -2554,7 +2654,7 @@ namespace Gestion_de_Stock.Forms
                     decimal SoldeAgriculteur = decimal.Add(decimal.Subtract(decimal.Subtract(l.TotalAvances, l.TotalAchats), l.Solde), TotalDeduit);
                     l.SoldeAgriculteur = SoldeAgriculteur == 0 ? l.Solde : SoldeAgriculteur;
                 }
-                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
             }
 
 
@@ -3098,7 +3198,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(AchatIpression))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
                 BonAchatAvance AchatAvanceImpression = new BonAchatAvance();
@@ -3118,7 +3218,7 @@ namespace Gestion_de_Stock.Forms
                     printTool.ShowPreviewDialog();
 
                 }
-                
+
             }
             else if (AchatDb.TypeAchat == TypeAchat.Huile)
 
@@ -3141,7 +3241,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(AchatIpression))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
                 BonAchatAvance AchatAvanceImpression = new BonAchatAvance();
@@ -3180,7 +3280,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(AchatIpression))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
                 BonAchatAvance AchatAvanceImpression = new BonAchatAvance();
 
@@ -3393,7 +3493,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(ticketService))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
             }
@@ -3422,7 +3522,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -3461,7 +3561,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -3499,7 +3599,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -3564,7 +3664,7 @@ namespace Gestion_de_Stock.Forms
                     decimal SoldeAgriculteur = decimal.Add(decimal.Subtract(decimal.Subtract(l.TotalAvances, l.TotalAchats), l.Solde), TotalDeduit);
                     l.SoldeAgriculteur = SoldeAgriculteur == 0 ? l.Solde : SoldeAgriculteur;
                 }
-                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m  , TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m , x.SoldeAgriculteurAvecSens }).ToList();
+                fournisseurBindingSource.DataSource = ListAgriculteurs.AsEnumerable().Select(x => new { x.Id, x.Numero, x.FullName, x.Tel, TotalAchats = Math.Truncate(x.TotalAchats * 1000m) / 1000m, TotalAvances = Math.Truncate(x.TotalAvances * 1000m) / 1000m, x.SoldeAgriculteurAvecSens }).ToList();
             }
 
 
@@ -3598,9 +3698,9 @@ namespace Gestion_de_Stock.Forms
             }
 
             if (QteOlive != 0 && PUOlive != 0)
+            {
                 TxtMtOpPrev.Text = (Math.Truncate(decimal.Multiply(PUOlive, QteOlive) * 100000m) / 100000m).ToString("0.000");
-
-
+            }
 
             decimal PUOliveFianl;
             string PUOliveFinalStr = TxtPUOliveFinal.Text.Replace(",", decimalSeparator).Replace(".", decimalSeparator);
@@ -3608,9 +3708,9 @@ namespace Gestion_de_Stock.Forms
 
 
             if (QteOlive != 0 && PUOliveFianl != 0)
+            {
                 TxtMontantReglement.Text = (Math.Truncate(decimal.Multiply(QteOlive, PUOliveFianl) * 100000m) / 100000m).ToString("0.000");
-
-
+            }
         }
 
         private void comboBoxTypeOlive_EditValueChanged(object sender, EventArgs e)
@@ -3782,12 +3882,17 @@ namespace Gestion_de_Stock.Forms
             using (ReportPrintTool printTool = new ReportPrintTool(FactureAchats))
             {
                 printTool.ShowPreviewDialog();
-           
+
             }
 
         }
 
         private void TxtPoids_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridControl2_Click(object sender, EventArgs e)
         {
 
         }

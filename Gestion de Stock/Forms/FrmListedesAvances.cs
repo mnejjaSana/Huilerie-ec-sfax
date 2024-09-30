@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using Gestion_de_Stock.Model.Enumuration;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraPrinting;
-using System.Diagnostics;
-using Gestion_de_Stock.Model;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
+using Gestion_de_Stock.Model;
+using Gestion_de_Stock.Model.Enumuration;
 using Gestion_de_Stock.Repport;
-using DevExpress.LookAndFeel;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Gestion_de_Stock.Forms
 {
@@ -29,7 +22,10 @@ namespace Gestion_de_Stock.Forms
             get
             {
                 if (_FrmListedesAvances == null)
+                {
                     _FrmListedesAvances = new FrmListedesAvances();
+                }
+
                 return _FrmListedesAvances;
             }
         }
@@ -42,7 +38,7 @@ namespace Gestion_de_Stock.Forms
 
         private void FrmListedesAvances_Load(object sender, EventArgs e)
         {
-          achatBindingSource.DataSource=  db.Achats.Where(x => x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+            achatBindingSource.DataSource = db.Achats.Where(x => x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
         }
 
         private void FrmListedesAvances_FormClosed(object sender, FormClosedEventArgs e)
@@ -52,7 +48,7 @@ namespace Gestion_de_Stock.Forms
 
         private void BtnExportExcel_Click(object sender, EventArgs e)
         {
-            string path = "Liste des Avences.xlsx";       
+            string path = "Liste des Avences.xlsx";
             gridControl1.ExportToXlsx(path);
             // Open the created XLSX file with the default application.
             Process.Start(path);
@@ -76,11 +72,11 @@ namespace Gestion_de_Stock.Forms
 
             if (DateMaxJour.ToString("dd/MM/yyyy").Equals("01/01/0001"))
             {
-                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin  && x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin && x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
             }
             else
             {
-                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin  && x.Date <= DateMaxJour && x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin && x.Date <= DateMaxJour && x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
             }
         }
 
@@ -96,7 +92,7 @@ namespace Gestion_de_Stock.Forms
             }
             if (DateMaxJour.ToString("dd/MM/yyyy").Equals("01/01/0001"))
             {
-                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin  && x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin && x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
             }
             else
             {
@@ -104,7 +100,44 @@ namespace Gestion_de_Stock.Forms
             }
         }
 
-        private void BtnImprimerTicket_Click(object sender, EventArgs e)
+        //btn
+
+
+        public void FormshowNotParent(Form frm)
+        {
+            // waiting Form
+            //SplashScreenManager.ShowForm(this, typeof(FrmWaitForm1), true, true, false);
+            //SplashScreenManager.Default.SetWaitFormCaption("Veuillez patienter....");
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Thread.Sleep(10);
+            //}
+            //SplashScreenManager.CloseForm();
+            //waiting Form
+            // frm.MdiParent = this;
+            frm.Show();
+            frm.Activate();
+            frm.Activate();
+        }
+
+        // btn detail 
+        //Achat achat = gridView1.GetFocusedRow() as Achat;
+
+        //db = new Model.ApplicationContext();
+
+        //    List<Personne_Passager> result = new List<Personne_Passager>();
+
+
+        //result = db.PersonnePassagers.Where(x => x.Achat.Id.Equals(achat.Id)).ToList();
+
+        //FormshowNotParent(Forms.FrmDetailAvanceImpo.InstanceFrmDetailAvanceImpo);
+
+        //    if (Application.OpenForms.OfType<FrmDetailAvanceImpo>().FirstOrDefault() != null)
+        //    {
+        //        Application.OpenForms.OfType<FrmDetailAvanceImpo>().First().personnePassagerBindingSource.DataSource = result;
+        //    }
+
+    private void BtnImprimerTicket_Click(object sender, EventArgs e)
         {
             Achat A = gridView1.GetFocusedRow() as Achat;
 
@@ -133,12 +166,12 @@ namespace Gestion_de_Stock.Forms
                     using (ReportPrintTool printTool = new ReportPrintTool(xrAvance))
                     {
                         printTool.ShowPreviewDialog();
-                   
+
                     }
                 }
             }
 
-           
+
         }
 
         private void BtnActualiser_Click(object sender, EventArgs e)

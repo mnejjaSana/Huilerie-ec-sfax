@@ -180,6 +180,12 @@
     <Compile Include="Forms\FrmAnnulationAvance.Designer.cs">
       <DependentUpon>FrmAnnulationAvance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmDetailAvanceImpo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDetailAvanceImpo.Designer.cs">
+      <DependentUpon>FrmDetailAvanceImpo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmEmplacement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -716,6 +722,14 @@
     <Compile Include="Migrations\202409291928170_mtdeduit.designer.cs">
       <DependentUpon>202409291928170_mtdeduit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202409301847414_passager.cs" />
+    <Compile Include="Migrations\202409301847414_passager.designer.cs">
+      <DependentUpon>202409301847414_passager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409302038407_passagerp.cs" />
+    <Compile Include="Migrations\202409302038407_passagerp.designer.cs">
+      <DependentUpon>202409302038407_passagerp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Achat.cs" />
     <Compile Include="Model\Affaire.cs" />
@@ -893,6 +907,9 @@
     <Compile Include="Repport\xrAvance.Designer.cs">
       <DependentUpon>xrAvance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repport\XrAvancePersonne.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Forms\FrmAjouterBanque.resx">
       <DependentUpon>FrmAjouterBanque.cs</DependentUpon>
     </EmbeddedResource>
@@ -905,6 +922,9 @@
     <EmbeddedResource Include="Forms\FrmAnnulationAvance.resx">
       <DependentUpon>FrmAnnulationAvance.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDetailAvanceImpo.resx">
+      <DependentUpon>FrmDetailAvanceImpo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmEmplacement.resx">
       <DependentUpon>FrmEmplacement.cs</DependentUpon>
@@ -1198,6 +1218,12 @@
     <EmbeddedResource Include="Migrations\202409291928170_mtdeduit.resx">
       <DependentUpon>202409291928170_mtdeduit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409301847414_passager.resx">
+      <DependentUpon>202409301847414_passager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409302038407_passagerp.resx">
+      <DependentUpon>202409302038407_passagerp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1261,6 +1287,9 @@
     <EmbeddedResource Include="Repport\xrAvance.resx">
       <DependentUpon>xrAvance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Repport\XrAvancePersonne.resx">
+      <DependentUpon>XrAvancePersonne.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Base de donnees\25_10_20221.bak" />
     <None Include="File\Accees Anydesk  Client.xlsx" />
@@ -1319,6 +1348,7 @@
     <None Include="Properties\DataSources\Gestion_de_Stock.Model.MouvementStock.datasource" />
     <None Include="Properties\DataSources\Gestion_de_Stock.Model.MouvementStock1.datasource" />
     <None Include="Properties\DataSources\Gestion_de_Stock.Model.MouvementStockOlive.datasource" />
+    <None Include="Properties\DataSources\Gestion_de_Stock.Model.Personne_Passager.datasource" />
     <None Include="Properties\DataSources\Gestion_de_Stock.Model.Pile.datasource" />
     <None Include="Properties\DataSources\Gestion_de_Stock.Model.Pointage.datasource" />
     <None Include="Properties\DataSources\Gestion_de_Stock.Model.PointageJournalier.datasource" />
@@ -1427,7 +1457,9 @@
     <None Include="Resources\calendrier1.png" />
     <None Include="Resources\banque1.png" />
     <Content Include="Resources\calendrier.png" />
-    <None Include="Resources\EC.png" />
+    <None Include="Resources\EC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\engineering_consulting_sarl_e_c_logo.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

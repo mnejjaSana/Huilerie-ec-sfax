@@ -11,8 +11,10 @@ namespace Gestion_de_Stock.Model
 
     public class Achat
     {
+      
         public Achat()
         {
+            PersonnesPassagers = new List<Personne_Passager>(); // Initialisation ici
             Date = DateTime.Now;
         }
         public int Id { get; set; }
@@ -188,12 +190,7 @@ namespace Gestion_de_Stock.Model
             }
         }
 
-        public string Nom { get; set; }
+       public List<Personne_Passager> PersonnesPassagers { get; set; }
 
-        public string Prenom { get; set; }
-
-        public string CIN { get; set; }
- 
-     
     }
 }
