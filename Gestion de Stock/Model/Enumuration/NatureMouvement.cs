@@ -15,6 +15,7 @@ namespace Gestion_de_Stock.Model.Enumuration
         AvanceAgriculteur = 5,
         ClôtureCaisse = 6,
         ModificationService = 7,
-        AchatHuile=8
+        AchatHuile=8,
+        ReglementImpo = 9
     }
 }

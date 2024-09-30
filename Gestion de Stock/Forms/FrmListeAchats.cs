@@ -264,7 +264,7 @@ namespace Gestion_de_Stock.Forms
         {
 
             Achat A = gridView1.GetFocusedRow() as Achat;
-
+          
             db = new Model.ApplicationContext();
 
             Achat AchatDb = db.Achats.Find(A.Id);

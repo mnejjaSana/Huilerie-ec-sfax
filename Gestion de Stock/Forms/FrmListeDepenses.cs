@@ -39,7 +39,7 @@ namespace Gestion_de_Stock.Forms
         private void FrmListeDepenses_Load(object sender, EventArgs e)
         {
             
-           depenseBindingSource.DataSource = db.Depenses.Where(x=> x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile  && x.ModePaiement.Equals("Espèce")).OrderByDescending(x => x.DateCreation).ToList();
+           depenseBindingSource.DataSource = db.Depenses.Where(x=> x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.Nature != NatureMouvement.ReglementImpo && x.ModePaiement.Equals("Espèce")).OrderByDescending(x => x.DateCreation).ToList();
 
         }
 
