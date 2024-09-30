@@ -207,6 +207,7 @@ namespace Gestion_de_Stock.Forms
                         //e.Appearance.BackColor = Color.FromArgb(150, Color.Salmon);
                         e.Graphics.DrawImage(imageReglee, e.Bounds.Location);
                         // e.DisplayText = " ";
+
                     }
 
                     else if (Convert.ToInt32(e.CellValue) == 1)
