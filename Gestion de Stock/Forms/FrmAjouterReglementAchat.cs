@@ -182,7 +182,7 @@ namespace Gestion_de_Stock.Forms
                 db.SaveChanges();
             }
 
-            if (gridView1.RowCount == 0 && MontantEncaisse >= 3000 && MontantEncaisse != MontantOperation)
+            if (gridView1.RowCount == 0 && MontantEncaisse >= 3000 && MontantEncaisse != MontantOperation )
             { // Calculer 1% de MontantEncaisse
 
 
@@ -202,31 +202,72 @@ namespace Gestion_de_Stock.Forms
                 db.HistoriquePaiementAchats.Add(HP);
                 db.SaveChanges();
 
+                var Achatdb1 = db.Achats
+        .Where(x => TxtCodeAchat.Text.Contains(x.Numero))
+        .OrderBy(x => x.Date)
+        .ToList();
 
                 foreach (var code in codesAchats)
                 {
 
-                    Achat Achatdb = db.Achats.Where(x => x.Numero.Equals(code.Trim())).FirstOrDefault();
+                    var Achatdb = db.Achats
+        .Where(x => x.Numero.Equals(code.Trim()))
+        .OrderByDescending(x => x.Date)
+        .FirstOrDefault(); 
                     if (Achatdb != null)
                     {
-                        Achatdb.EtatAchat = EtatAchat.Reglee;
-                        Achatdb.MontantRegle = Achatdb.MontantReglement;
+                        if (MontantEncaisse >= Achatdb.MontantReglement)
+                        {
+                            Achatdb.EtatAchat = EtatAchat.Reglee;
+                            Achatdb.MontantRegle = Achatdb.MontantReglement;
+                            Achatdb.MontantReglement = Achatdb.MontantReglement;
 
-                        HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats();
+                            Achatdb.MontantReglement = Achatdb.MontantReglement;
 
-                        HPAchat.Founisseur = Achatdb.Founisseur;
-                        HPAchat.NumAchat = Achatdb.Numero;
-                        HPAchat.MontantReglement = Achatdb.MontantReglement;
-                        HPAchat.MontantRegle = Achatdb.MontantReglement;
-                        HPAchat.ResteApayer = 0;
-                        HPAchat.Commentaire = "Règlement Caisse";
-                        HPAchat.TypeAchat = Achatdb.TypeAchat;
-                        db.HistoriquePaiementAchats.Add(HPAchat);
-                        db.SaveChanges();
+                            MontantEncaisse -= Achatdb.MontantReglement;
+
+                            HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats();
+                            {
+                                HPAchat.Founisseur = Achatdb.Founisseur;
+                                HPAchat.NumAchat = Achatdb.Numero;
+                                HPAchat.MontantReglement = Achatdb.MontantReglement;
+                                HPAchat.MontantRegle = Achatdb.MontantReglement;
+                                HPAchat.ResteApayer = 0;
+                                HPAchat.Commentaire = "Règlement Caisse";
+                                HPAchat.TypeAchat = Achatdb.TypeAchat;
+                              
+                            };
+                            db.HistoriquePaiementAchats.Add(HPAchat);
+                        }
+                        else
+                        {
+                           
+                            Achatdb.MontantRegle += MontantEncaisse; // Add the paid amount
+                            Achatdb.MontantReglement -= MontantEncaisse; // Remaining amount after partial payment
+                            Achatdb.EtatAchat = EtatAchat.PartiellementReglee; // Update status
+
+                            // Create history entry
+                            HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats
+                            {
+                                Founisseur = Achatdb.Founisseur,
+                                NumAchat = Achatdb.Numero,
+                                MontantReglement = MontantEncaisse,
+                                MontantRegle = MontantEncaisse,
+                                ResteApayer = Achatdb.MontantReglement,
+                                Commentaire = "Règlement Caisse (partiel)",
+                                TypeAchat = Achatdb.TypeAchat
+                            };
+                            db.HistoriquePaiementAchats.Add(HPAchat);
+
+                            MontantEncaisse = 0; // All available funds are used
+                            break; // Exit loop after partial payment
+                        }
+
+                            db.SaveChanges(); // Save changes for each purchase
+                        }
+
+
                     }
-
-
-                }
 
                 // Depense 
                 Depense D = new Depense();
