@@ -68,7 +68,7 @@ namespace Gestion_de_Stock.Forms
             decimal Solde;
             string SoldeStr = TxtSolde.Text.Replace(",", decimalSeparator).Replace(".", decimalSeparator);
             decimal.TryParse(SoldeStr, out Solde);
-            
+
 
             var codesAchats = TxtCodeAchat.Text.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(code => code.Trim()).ToList();
 
@@ -89,15 +89,15 @@ namespace Gestion_de_Stock.Forms
             }
 
 
-        
+
             //si aucune ligne dans la grid et le montant de TxtMontantEncaisse superieur a 3 mille
             var mtTicket = 0m;
             string num = codesAchats[0].Trim();
             Achat Achat = db.Achats.Where(x => x.Numero.Equals(num)).FirstOrDefault();
             if (gridView1.RowCount == 0 && MontantEncaisse >= 3000 && MontantEncaisse == MontantOperation)
             { // Calculer 1% de MontantEncaisse
-                
-                
+
+
                 HistoriquePaiementAchats HP = new HistoriquePaiementAchats();
                 var MtAdeduireAjouterREG = decimal.Divide(MontantEncaisse, 100);
                 var MtAPayeAvecImpoAjouterREG = decimal.Subtract(MontantEncaisse, MtAdeduireAjouterREG);
@@ -182,7 +182,7 @@ namespace Gestion_de_Stock.Forms
                 db.SaveChanges();
             }
 
-            if (gridView1.RowCount == 0 && MontantEncaisse >= 3000 && MontantEncaisse != MontantOperation )
+            if (gridView1.RowCount == 0 && MontantEncaisse >= 3000 && MontantEncaisse != MontantOperation)
             { // Calculer 1% de MontantEncaisse
 
 
@@ -202,29 +202,31 @@ namespace Gestion_de_Stock.Forms
                 db.HistoriquePaiementAchats.Add(HP);
                 db.SaveChanges();
 
-                var Achatdb1 = db.Achats
-        .Where(x => TxtCodeAchat.Text.Contains(x.Numero))
-        .OrderBy(x => x.Date)
-        .ToList();
+                List<string> numeroachats = db.Achats
+     .Where(x => TxtCodeAchat.Text.Contains(x.Numero))
+     .OrderBy(x => x.Date)
+     .Select(x => x.Numero) // Select only the Numero property
+     .ToList();
 
-                foreach (var code in codesAchats)
+                foreach (var code in numeroachats)
                 {
 
                     var Achatdb = db.Achats
-        .Where(x => x.Numero.Equals(code.Trim()))
-        .OrderByDescending(x => x.Date)
-        .FirstOrDefault(); 
+        .Where(x => x.Numero.Equals(code.Trim())) // Match the Numero with the current code
+        .OrderBy(x => x.Date)
+        .FirstOrDefault();
+                    var ResteaPayer = Achatdb.MontantReglement - Achatdb.MontantRegle;
                     if (Achatdb != null)
                     {
-                        if (MontantEncaisse >= Achatdb.MontantReglement)
+                        if (MontantEncaisse >= ResteaPayer)
                         {
                             Achatdb.EtatAchat = EtatAchat.Reglee;
                             Achatdb.MontantRegle = Achatdb.MontantReglement;
                             Achatdb.MontantReglement = Achatdb.MontantReglement;
 
-                            Achatdb.MontantReglement = Achatdb.MontantReglement;
 
-                            MontantEncaisse -= Achatdb.MontantReglement;
+
+                            MontantEncaisse -= ResteaPayer;
 
                             HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats();
                             {
@@ -235,39 +237,40 @@ namespace Gestion_de_Stock.Forms
                                 HPAchat.ResteApayer = 0;
                                 HPAchat.Commentaire = "Règlement Caisse";
                                 HPAchat.TypeAchat = Achatdb.TypeAchat;
-                              
+
                             };
                             db.HistoriquePaiementAchats.Add(HPAchat);
-                        }
-                        else
-                        {
-                           
-                            Achatdb.MontantRegle += MontantEncaisse; // Add the paid amount
-                            Achatdb.MontantReglement -= MontantEncaisse; // Remaining amount after partial payment
-                            Achatdb.EtatAchat = EtatAchat.PartiellementReglee; // Update status
 
+                        }
+                        else if (MontantEncaisse != 0 && MontantEncaisse < ResteaPayer)
+                        {
+                            Achatdb.EtatAchat = EtatAchat.PartiellementReglee;
+                            Achatdb.MontantRegle += MontantEncaisse;
+                            Achatdb.MontantReglement = Achatdb.MontantReglement;
+                            MontantEncaisse = 0;
+
+                            var Reset = decimal.Subtract(Achatdb.MontantReglement, Achatdb.MontantRegle);
                             // Create history entry
                             HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats
                             {
                                 Founisseur = Achatdb.Founisseur,
                                 NumAchat = Achatdb.Numero,
-                                MontantReglement = MontantEncaisse,
-                                MontantRegle = MontantEncaisse,
-                                ResteApayer = Achatdb.MontantReglement,
+                                MontantReglement = Achatdb.MontantReglement,
+                                MontantRegle = Achatdb.MontantRegle,
+                                ResteApayer = Reset,
                                 Commentaire = "Règlement Caisse (partiel)",
                                 TypeAchat = Achatdb.TypeAchat
                             };
                             db.HistoriquePaiementAchats.Add(HPAchat);
 
-                            MontantEncaisse = 0; // All available funds are used
-                            break; // Exit loop after partial payment
+
                         }
 
-                            db.SaveChanges(); // Save changes for each purchase
-                        }
-
-
+                        db.SaveChanges(); // Save changes for each purchase
                     }
+
+
+                }
 
                 // Depense 
                 Depense D = new Depense();
@@ -312,7 +315,7 @@ namespace Gestion_de_Stock.Forms
             }
 
 
-
+            // cas if() as8ar min 3000
             if (Application.OpenForms.OfType<FrmListeDepensesAgriculteurs>().FirstOrDefault() != null)
                 Application.OpenForms.OfType<FrmListeDepensesAgriculteurs>().First().depenseBindingSource.DataSource = db.Depenses.Where(x => (x.Nature == NatureMouvement.AchatOlive || x.Nature == NatureMouvement.AvanceAgriculteur || x.Nature == NatureMouvement.AchatHuile) && x.Montant > 0).OrderByDescending(x => x.DateCreation).ToList();
 
@@ -407,60 +410,61 @@ namespace Gestion_de_Stock.Forms
 
             }
         }
- 
-
-    
 
 
-            private void FrmAjouterReglementAchat_Load(object sender, EventArgs e)
+
+
+
+        private void FrmAjouterReglementAchat_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName == "cin")
             {
+                var newValue = e.Value as string;
+
+                // Vérifiez si la nouvelle valeur n'est pas nulle et contient exactement 8 chiffres
+                if (!string.IsNullOrEmpty(newValue))
+                {
+                    // Vérifiez si la longueur est 8 ou contient des caractères non numériques
+                    if (newValue.Length != 8 || !newValue.All(char.IsDigit))
+                    {
+                        // Affichez un message d'erreur
+                        XtraMessageBox.Show("Le CIN doit contenir exactement 8 chiffres.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Vérifiez si le CIN existe déjà dans le GridView
+                    for (int row = 0; row < gridView1.DataRowCount; row++)
+                    {
+                        var existingCIN = gridView1.GetRowCellValue(row, "cin") as string;
+                        if (existingCIN == newValue)
+                        {
+                            // Affichez un message d'erreur si le CIN existe déjà
+                            XtraMessageBox.Show("Ce CIN existe déjà.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            // Rétablir la valeur précédente ou effacer la cellule
+                            gridView1.SetRowCellValue(e.RowHandle, e.Column, null); // ou utilisez la valeur précédente
+                            return;
+                        }
+                    }
+                }
 
             }
 
-            private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-            {
-                if (e.Column.FieldName == "cin")
-                {
-                    var newValue = e.Value as string;
-
-                    // Vérifiez si la nouvelle valeur n'est pas nulle et contient exactement 8 chiffres
-                    if (!string.IsNullOrEmpty(newValue))
-                    {
-                        // Vérifiez si la longueur est 8 ou contient des caractères non numériques
-                        if (newValue.Length != 8 || !newValue.All(char.IsDigit))
-                        {
-                            // Affichez un message d'erreur
-                            XtraMessageBox.Show("Le CIN doit contenir exactement 8 chiffres.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Vérifiez si le CIN existe déjà dans le GridView
-                        for (int row = 0; row < gridView1.DataRowCount; row++)
-                        {
-                            var existingCIN = gridView1.GetRowCellValue(row, "cin") as string;
-                            if (existingCIN == newValue)
-                            {
-                                // Affichez un message d'erreur si le CIN existe déjà
-                                XtraMessageBox.Show("Ce CIN existe déjà.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                                // Rétablir la valeur précédente ou effacer la cellule
-                                gridView1.SetRowCellValue(e.RowHandle, e.Column, null); // ou utilisez la valeur précédente
-                                return;
-                            }
-                        }
-                    }
-
-                }
-
-                }
+        }
 
 
-                private void BtnSupprimer_Click_1(object sender, EventArgs e)
-                {
-                    int visibleIndex = gridView1.GetVisibleIndex(gridView1.FocusedRowHandle);
-                    gridView1.DeleteRow(visibleIndex);
+        private void BtnSupprimer_Click_1(object sender, EventArgs e)
+        {
+            int visibleIndex = gridView1.GetVisibleIndex(gridView1.FocusedRowHandle);
+            gridView1.DeleteRow(visibleIndex);
 
-                }
+        }
 
 
 
-            } }
+    }
+}
