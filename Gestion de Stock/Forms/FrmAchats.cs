@@ -746,7 +746,20 @@ namespace Gestion_de_Stock.Forms
                     db.SaveChanges();
                     AvnaceSurAchat.Numero = "AVN" + (A.Id).ToString("D8");
                     db.SaveChanges();
-                    F.Solde = Decimal.Add(F.Solde, MontantRegle);
+
+                    decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
+
+                    MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
+
+                    if (MontantRegle >= 3000)
+                    {
+                        F.Solde = decimal.Add(F.Solde, MontantRegleFinal);
+                    }
+                    else
+                    {
+                        F.Solde = Decimal.Add(F.Solde, MontantRegle);
+                    }
+                  
                     db.SaveChanges();
 
                     // new work
@@ -754,14 +767,10 @@ namespace Gestion_de_Stock.Forms
 
                     if (MontantRegle >= 3000)
                     {
-                        decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
-
-                        MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
-
                         AvnaceSurAchat.MontantInitialAvance = MontantRegle;
                         AvnaceSurAchat.MontantRegle = MontantRegleFinal;
                         AvnaceSurAchat.AvanceAvecAchat = MontantRegleFinal;
-                        F.Solde = decimal.Add(F.Solde, MontantRegleFinal);
+                       
                         db.SaveChanges();
                         MontantRegle = MontantRegleFinal;
 
@@ -1093,6 +1102,35 @@ namespace Gestion_de_Stock.Forms
 
                 }
 
+                decimal MontantRegleFinal = 0m;
+
+                List<Personne_Passager> ListePassagers = new List<Personne_Passager>();
+
+                if (MontantRegle >= 3000)
+                {
+                    int row = 0;
+
+                    while (gridView4.IsValidRowHandle(row))
+                    {
+                        var data = gridView4.GetRow(row) as Personne_Passager;
+                        ListePassagers.Add(data);
+                        row++;
+                    }
+                    if (ListePassagers.Count > 0)
+                    {
+
+                        decimal totalGrid = ListePassagers.Sum(x => x.MontantReglement);
+
+                        if (totalGrid != MontantRegle)
+                        {
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            return;
+
+                        }
+
+
+                    }
+                }
                 A.StatutProd = StatutProduction.EnAttente;
 
                 if (comboBoxTypeOlive.Text.Equals("OliveVif"))
@@ -1169,34 +1207,31 @@ namespace Gestion_de_Stock.Forms
                     db.SaveChanges();
                     AvnaceSurAchat.Numero = "AVN" + (A.Id).ToString("D8");
                     db.SaveChanges();
-                    F.Solde = Decimal.Add(F.Solde, MontantRegle);
-                    db.SaveChanges();
+                    decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
 
-                    // new work
-                    decimal MontantRegleFinal = 0m;
-
-                    List<Personne_Passager> ListePassagers = new List<Personne_Passager>();
+                    MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
 
                     if (MontantRegle >= 3000)
                     {
-                        decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
+                        F.Solde = decimal.Add(F.Solde, MontantRegleFinal);
+                    }
+                    else
+                    {
+                        F.Solde = Decimal.Add(F.Solde, MontantRegle);
+                    }
+                    db.SaveChanges();
 
-                        MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
-
+                    // new work
+                    if (MontantRegle >= 3000)
+                    {
+                        
                         AvnaceSurAchat.MontantInitialAvance = MontantRegle;
                         AvnaceSurAchat.MontantRegle = MontantRegleFinal;
                         AvnaceSurAchat.AvanceAvecAchat = MontantRegleFinal;
                         F.Solde = decimal.Add(F.Solde, MontantRegleFinal);
                         db.SaveChanges();
                         MontantRegle = MontantRegleFinal;
-                        int row = 0;
 
-                        while (gridView4.IsValidRowHandle(row))
-                        {
-                            var data = gridView4.GetRow(row) as Personne_Passager;
-                            ListePassagers.Add(data);
-                            row++;
-                        }
                         if (ListePassagers.Count == 0)
                         {
                             AvnaceSurAchat.PersonnesPassagers = null;
@@ -1204,22 +1239,12 @@ namespace Gestion_de_Stock.Forms
                         }
                         else
                         {
-                            decimal totalGrid = ListePassagers.Sum(x => x.MontantReglement);
-
-                            if (totalGrid == MontantRegle)
+                            foreach (var item in ListePassagers)
                             {
-                                foreach (var item in ListePassagers)
-                                {
-                                    A.PersonnesPassagers.Add(
-                                      new Personne_Passager { FullName = item.FullName, cin = item.cin, MontantReglement = item.MontantReglement, Numero = AvnaceSurAchat.Numero });
-                                }
+                                A.PersonnesPassagers.Add(
+                                  new Personne_Passager { FullName = item.FullName, cin = item.cin, MontantReglement = item.MontantReglement, Numero = AvnaceSurAchat.Numero });
+                            }
 
-                            }
-                            else
-                            {
-                                XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                                return;
-                            }
                         }
                     }
 
@@ -1464,7 +1489,35 @@ namespace Gestion_de_Stock.Forms
                     return;
 
                 }
+                decimal MontantRegleFinal = 0m;
 
+                List<Personne_Passager> ListePassagers = new List<Personne_Passager>();
+
+                if (MontantRegle >= 3000)
+                {
+                    int row = 0;
+
+                    while (gridView4.IsValidRowHandle(row))
+                    {
+                        var data = gridView4.GetRow(row) as Personne_Passager;
+                        ListePassagers.Add(data);
+                        row++;
+                    }
+                    if (ListePassagers.Count > 0)
+                    {
+
+                        decimal totalGrid = ListePassagers.Sum(x => x.MontantReglement);
+
+                        if (totalGrid != MontantRegle)
+                        {
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            return;
+
+                        }
+
+
+                    }
+                }
                 A.StatutProd = StatutProduction.Stocké;
                 A.NuméroBon = TxtNuméroBon.Text;
 
@@ -1664,35 +1717,32 @@ namespace Gestion_de_Stock.Forms
                     db.SaveChanges();
                     AvnaceSurAchat.Numero = "AVN" + (A.Id).ToString("D8");
                     db.SaveChanges();
-                    F.Solde = Decimal.Add(F.Solde, MontantRegle);
+                    decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
+
+                    MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
+
+                    if (MontantRegle >= 3000)
+                    {
+                        F.Solde = decimal.Add(F.Solde, MontantRegleFinal);
+                    }
+                    else
+                    {
+                        F.Solde = Decimal.Add(F.Solde, MontantRegle);
+                    }
                     db.SaveChanges();
 
 
                     // new work
-                    decimal MontantRegleFinal = 0m;
-
-                    List<Personne_Passager> ListePassagers = new List<Personne_Passager>();
-
                     if (MontantRegle >= 3000)
                     {
-                        decimal Deduit = decimal.Multiply(MontantRegle, 0.01m);
-
-                        MontantRegleFinal = decimal.Subtract(MontantRegle, Deduit);
-
+                        
                         AvnaceSurAchat.MontantInitialAvance = MontantRegle;
                         AvnaceSurAchat.MontantRegle = MontantRegleFinal;
                         AvnaceSurAchat.AvanceAvecAchat = MontantRegleFinal;
                         F.Solde = decimal.Add(F.Solde, MontantRegleFinal);
                         db.SaveChanges();
                         MontantRegle = MontantRegleFinal;
-                        int row = 0;
 
-                        while (gridView4.IsValidRowHandle(row))
-                        {
-                            var data = gridView4.GetRow(row) as Personne_Passager;
-                            ListePassagers.Add(data);
-                            row++;
-                        }
                         if (ListePassagers.Count == 0)
                         {
                             AvnaceSurAchat.PersonnesPassagers = null;
@@ -1700,22 +1750,12 @@ namespace Gestion_de_Stock.Forms
                         }
                         else
                         {
-                            decimal totalGrid = ListePassagers.Sum(x => x.MontantReglement);
-
-                            if (totalGrid == MontantRegle)
+                            foreach (var item in ListePassagers)
                             {
-                                foreach (var item in ListePassagers)
-                                {
-                                    A.PersonnesPassagers.Add(
-                                      new Personne_Passager { FullName = item.FullName, cin = item.cin, MontantReglement = item.MontantReglement, Numero = AvnaceSurAchat.Numero });
-                                }
+                                A.PersonnesPassagers.Add(
+                                  new Personne_Passager { FullName = item.FullName, cin = item.cin, MontantReglement = item.MontantReglement, Numero = AvnaceSurAchat.Numero });
+                            }
 
-                            }
-                            else
-                            {
-                                XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                                return;
-                            }
                         }
                     }
 
