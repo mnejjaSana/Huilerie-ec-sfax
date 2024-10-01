@@ -319,7 +319,7 @@
             // 
             // checkImpo
             // 
-            this.checkImpo.Location = new System.Drawing.Point(12, 500);
+            this.checkImpo.Location = new System.Drawing.Point(12, 232);
             this.checkImpo.Name = "checkImpo";
             this.checkImpo.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkImpo.Properties.Appearance.Options.UseFont = true;
@@ -331,7 +331,7 @@
             // dateEcheance
             // 
             this.dateEcheance.EditValue = null;
-            this.dateEcheance.Location = new System.Drawing.Point(159, 617);
+            this.dateEcheance.Location = new System.Drawing.Point(159, 349);
             this.dateEcheance.Name = "dateEcheance";
             this.dateEcheance.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateEcheance.Properties.Appearance.Options.UseFont = true;
@@ -345,7 +345,7 @@
             // 
             // TxtBank
             // 
-            this.TxtBank.Location = new System.Drawing.Point(159, 587);
+            this.TxtBank.Location = new System.Drawing.Point(159, 319);
             this.TxtBank.Name = "TxtBank";
             this.TxtBank.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBank.Properties.Appearance.Options.UseFont = true;
@@ -355,7 +355,7 @@
             // 
             // TxtNumCheque
             // 
-            this.TxtNumCheque.Location = new System.Drawing.Point(159, 557);
+            this.TxtNumCheque.Location = new System.Drawing.Point(159, 289);
             this.TxtNumCheque.Name = "TxtNumCheque";
             this.TxtNumCheque.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNumCheque.Properties.Appearance.Options.UseFont = true;
@@ -365,7 +365,7 @@
             // 
             // comboBoxModeReglement
             // 
-            this.comboBoxModeReglement.Location = new System.Drawing.Point(159, 527);
+            this.comboBoxModeReglement.Location = new System.Drawing.Point(159, 259);
             this.comboBoxModeReglement.Name = "comboBoxModeReglement";
             this.comboBoxModeReglement.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxModeReglement.Properties.Appearance.Options.UseFont = true;
@@ -378,7 +378,7 @@
             // 
             // TxtPUOliveFinal
             // 
-            this.TxtPUOliveFinal.Location = new System.Drawing.Point(159, 382);
+            this.TxtPUOliveFinal.Location = new System.Drawing.Point(159, 114);
             this.TxtPUOliveFinal.Name = "TxtPUOliveFinal";
             this.TxtPUOliveFinal.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPUOliveFinal.Properties.Appearance.Options.UseFont = true;
@@ -389,7 +389,7 @@
             // 
             // TxtQteOlive
             // 
-            this.TxtQteOlive.Location = new System.Drawing.Point(159, 152);
+            this.TxtQteOlive.Location = new System.Drawing.Point(159, -116);
             this.TxtQteOlive.Name = "TxtQteOlive";
             this.TxtQteOlive.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtQteOlive.Properties.Appearance.Options.UseFont = true;
@@ -401,7 +401,7 @@
             // searchLookUpEmplacement
             // 
             this.searchLookUpEmplacement.EditValue = "";
-            this.searchLookUpEmplacement.Location = new System.Drawing.Point(159, 703);
+            this.searchLookUpEmplacement.Location = new System.Drawing.Point(159, 435);
             this.searchLookUpEmplacement.Name = "searchLookUpEmplacement";
             this.searchLookUpEmplacement.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchLookUpEmplacement.Properties.Appearance.Options.UseFont = true;
@@ -428,7 +428,7 @@
             // 
             // TxtMtOpPrev
             // 
-            this.TxtMtOpPrev.Location = new System.Drawing.Point(159, 442);
+            this.TxtMtOpPrev.Location = new System.Drawing.Point(159, 174);
             this.TxtMtOpPrev.Name = "TxtMtOpPrev";
             this.TxtMtOpPrev.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtMtOpPrev.Properties.Appearance.Options.UseFont = true;
@@ -439,7 +439,7 @@
             // 
             // TxtPUOlive
             // 
-            this.TxtPUOlive.Location = new System.Drawing.Point(159, 352);
+            this.TxtPUOlive.Location = new System.Drawing.Point(159, 84);
             this.TxtPUOlive.Name = "TxtPUOlive";
             this.TxtPUOlive.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPUOlive.Properties.Appearance.Options.UseFont = true;
@@ -451,7 +451,7 @@
             // 
             // TxtRendement
             // 
-            this.TxtRendement.Location = new System.Drawing.Point(159, 322);
+            this.TxtRendement.Location = new System.Drawing.Point(159, 54);
             this.TxtRendement.Name = "TxtRendement";
             this.TxtRendement.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtRendement.Properties.Appearance.Options.UseFont = true;
@@ -462,7 +462,7 @@
             // 
             // TxtNuméroBon
             // 
-            this.TxtNuméroBon.Location = new System.Drawing.Point(159, 96);
+            this.TxtNuméroBon.Location = new System.Drawing.Point(159, -172);
             this.TxtNuméroBon.Name = "TxtNuméroBon";
             this.TxtNuméroBon.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNuméroBon.Properties.Appearance.Options.UseFont = true;
@@ -474,7 +474,7 @@
             // searchLookUpPile
             // 
             this.searchLookUpPile.EditValue = "";
-            this.searchLookUpPile.Location = new System.Drawing.Point(159, 412);
+            this.searchLookUpPile.Location = new System.Drawing.Point(159, 144);
             this.searchLookUpPile.Name = "searchLookUpPile";
             this.searchLookUpPile.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchLookUpPile.Properties.Appearance.Options.UseFont = true;
@@ -503,7 +503,7 @@
             // 
             // comboBoxQualité
             // 
-            this.comboBoxQualité.Location = new System.Drawing.Point(159, 182);
+            this.comboBoxQualité.Location = new System.Drawing.Point(159, -86);
             this.comboBoxQualité.Name = "comboBoxQualité";
             this.comboBoxQualité.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxQualité.Properties.Appearance.Options.UseFont = true;
@@ -517,7 +517,7 @@
             // 
             // TxtQteHuileAchetee
             // 
-            this.TxtQteHuileAchetee.Location = new System.Drawing.Point(159, 210);
+            this.TxtQteHuileAchetee.Location = new System.Drawing.Point(159, -58);
             this.TxtQteHuileAchetee.Name = "TxtQteHuileAchetee";
             this.TxtQteHuileAchetee.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtQteHuileAchetee.Properties.Appearance.Options.UseFont = true;
@@ -529,7 +529,7 @@
             // 
             // TxtResteApayer
             // 
-            this.TxtResteApayer.Location = new System.Drawing.Point(159, 675);
+            this.TxtResteApayer.Location = new System.Drawing.Point(159, 407);
             this.TxtResteApayer.Name = "TxtResteApayer";
             this.TxtResteApayer.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtResteApayer.Properties.Appearance.Options.UseFont = true;
@@ -541,7 +541,7 @@
             // 
             // TxtMontantRegle
             // 
-            this.TxtMontantRegle.Location = new System.Drawing.Point(159, 647);
+            this.TxtMontantRegle.Location = new System.Drawing.Point(159, 379);
             this.TxtMontantRegle.Name = "TxtMontantRegle";
             this.TxtMontantRegle.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtMontantRegle.Properties.Appearance.Options.UseFont = true;
@@ -553,7 +553,7 @@
             // 
             // TxtMontantReglement
             // 
-            this.TxtMontantReglement.Location = new System.Drawing.Point(159, 472);
+            this.TxtMontantReglement.Location = new System.Drawing.Point(159, 204);
             this.TxtMontantReglement.Name = "TxtMontantReglement";
             this.TxtMontantReglement.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtMontantReglement.Properties.Appearance.Options.UseFont = true;
@@ -565,7 +565,7 @@
             // 
             // TxtPrixLitre
             // 
-            this.TxtPrixLitre.Location = new System.Drawing.Point(159, 294);
+            this.TxtPrixLitre.Location = new System.Drawing.Point(159, 26);
             this.TxtPrixLitre.Name = "TxtPrixLitre";
             this.TxtPrixLitre.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPrixLitre.Properties.Appearance.Options.UseFont = true;
@@ -577,7 +577,7 @@
             // 
             // comboBoxTypeAchat
             // 
-            this.comboBoxTypeAchat.Location = new System.Drawing.Point(159, 68);
+            this.comboBoxTypeAchat.Location = new System.Drawing.Point(159, -200);
             this.comboBoxTypeAchat.Name = "comboBoxTypeAchat";
             this.comboBoxTypeAchat.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTypeAchat.Properties.Appearance.Options.UseFont = true;
@@ -592,7 +592,7 @@
             // 
             // TxtPoids
             // 
-            this.TxtPoids.Location = new System.Drawing.Point(159, 266);
+            this.TxtPoids.Location = new System.Drawing.Point(159, -2);
             this.TxtPoids.Name = "TxtPoids";
             this.TxtPoids.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPoids.Properties.Appearance.Options.UseFont = true;
@@ -604,7 +604,7 @@
             // 
             // TxtNbSac
             // 
-            this.TxtNbSac.Location = new System.Drawing.Point(159, 238);
+            this.TxtNbSac.Location = new System.Drawing.Point(159, -30);
             this.TxtNbSac.Name = "TxtNbSac";
             this.TxtNbSac.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNbSac.Properties.Appearance.Options.UseFont = true;
@@ -616,7 +616,7 @@
             // 
             // comboBoxTypeOlive
             // 
-            this.comboBoxTypeOlive.Location = new System.Drawing.Point(159, 124);
+            this.comboBoxTypeOlive.Location = new System.Drawing.Point(159, -144);
             this.comboBoxTypeOlive.Name = "comboBoxTypeOlive";
             this.comboBoxTypeOlive.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTypeOlive.Properties.Appearance.Options.UseFont = true;
@@ -632,7 +632,7 @@
             // searchLookUpFournisseur
             // 
             this.searchLookUpFournisseur.EditValue = "ComboBox";
-            this.searchLookUpFournisseur.Location = new System.Drawing.Point(159, 40);
+            this.searchLookUpFournisseur.Location = new System.Drawing.Point(159, -228);
             this.searchLookUpFournisseur.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.searchLookUpFournisseur.Name = "searchLookUpFournisseur";
             this.searchLookUpFournisseur.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -670,7 +670,7 @@
             this.BtnEnregister.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEnregister.Appearance.Options.UseFont = true;
             this.BtnEnregister.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnEnregister.ImageOptions.Image")));
-            this.BtnEnregister.Location = new System.Drawing.Point(12, 733);
+            this.BtnEnregister.Location = new System.Drawing.Point(12, 465);
             this.BtnEnregister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnEnregister.MaximumSize = new System.Drawing.Size(400, 30);
             this.BtnEnregister.Name = "BtnEnregister";
@@ -684,7 +684,7 @@
             // dateEditDateFacture
             // 
             this.dateEditDateFacture.EditValue = null;
-            this.dateEditDateFacture.Location = new System.Drawing.Point(159, 12);
+            this.dateEditDateFacture.Location = new System.Drawing.Point(159, -256);
             this.dateEditDateFacture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateEditDateFacture.Name = "dateEditDateFacture";
             this.dateEditDateFacture.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -736,7 +736,7 @@
             this.bank,
             this.layoutControlItem12,
             this.layoutControlItem8});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, -268);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(398, 789);
             this.layoutControlGroup3.TextVisible = false;
@@ -1130,6 +1130,7 @@
             this.gridView4.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gridView4.OptionsView.ShowFooter = true;
             this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView4_CellValueChanged);
             // 
             // colCIN
             // 
@@ -1187,6 +1188,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
             this.BtnSupprimer.Name = "BtnSupprimer";
             this.BtnSupprimer.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.BtnSupprimer.Click += new System.EventHandler(this.BtnSupprimer_Click);
             // 
             // BtnRefresh
             // 

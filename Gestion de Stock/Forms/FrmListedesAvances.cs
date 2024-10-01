@@ -120,22 +120,7 @@ namespace Gestion_de_Stock.Forms
             frm.Activate();
         }
 
-        // btn detail 
-        //Achat achat = gridView1.GetFocusedRow() as Achat;
-
-        //db = new Model.ApplicationContext();
-
-        //    List<Personne_Passager> result = new List<Personne_Passager>();
-
-
-        //result = db.PersonnePassagers.Where(x => x.Achat.Id.Equals(achat.Id)).ToList();
-
-        //FormshowNotParent(Forms.FrmDetailAvanceImpo.InstanceFrmDetailAvanceImpo);
-
-        //    if (Application.OpenForms.OfType<FrmDetailAvanceImpo>().FirstOrDefault() != null)
-        //    {
-        //        Application.OpenForms.OfType<FrmDetailAvanceImpo>().First().personnePassagerBindingSource.DataSource = result;
-        //    }
+       
 
     private void BtnImprimerTicket_Click(object sender, EventArgs e)
         {
@@ -178,6 +163,25 @@ namespace Gestion_de_Stock.Forms
         {
             db = new Model.ApplicationContext();
             achatBindingSource.DataSource = db.Achats.Where(x => x.TypeAchat == TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+        }
+
+        private void BtnDetail_Click(object sender, EventArgs e)
+        {
+            Achat achat = gridView1.GetFocusedRow() as Achat;
+
+            db = new Model.ApplicationContext();
+
+            List<Personne_Passager> result = new List<Personne_Passager>();
+
+
+            result = db.PersonnePassagers.Where(x => x.Achat.Id.Equals(achat.Id)).ToList();
+
+            FormshowNotParent(Forms.FrmDetailAvanceImpo.InstanceFrmDetailAvanceImpo);
+
+            if (Application.OpenForms.OfType<FrmDetailAvanceImpo>().FirstOrDefault() != null)
+            {
+                Application.OpenForms.OfType<FrmDetailAvanceImpo>().First().personnePassagerBindingSource.DataSource = result;
+            }
         }
     }
 }

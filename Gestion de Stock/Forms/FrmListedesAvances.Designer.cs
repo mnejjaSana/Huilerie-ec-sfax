@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListedesAvances));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -43,12 +44,14 @@
             this.achatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNumero = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BtnDetail = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFounisseur = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMontantRegle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTicket = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BtnImprimerTicket = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCodeAgricuteur = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -73,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.achatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnImprimerTicket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -196,7 +200,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.BtnImprimerTicket});
+            this.BtnImprimerTicket,
+            this.BtnDetail});
             this.gridControl1.Size = new System.Drawing.Size(876, 228);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -214,7 +219,8 @@
             this.colFounisseur,
             this.colMontantRegle,
             this.colTicket,
-            this.colCodeAgricuteur});
+            this.colCodeAgricuteur,
+            this.gridColumn1});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsFind.AlwaysVisible = true;
@@ -234,6 +240,16 @@
             this.colNumero.OptionsColumn.AllowEdit = false;
             this.colNumero.Visible = true;
             this.colNumero.VisibleIndex = 0;
+            // 
+            // BtnDetail
+            // 
+            this.BtnDetail.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.BtnDetail.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions2, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
+            this.BtnDetail.Name = "BtnDetail";
+            this.BtnDetail.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.BtnDetail.Click += new System.EventHandler(this.BtnDetail_Click);
             // 
             // colDate
             // 
@@ -305,6 +321,16 @@
             this.colCodeAgricuteur.OptionsColumn.AllowEdit = false;
             this.colCodeAgricuteur.Visible = true;
             this.colCodeAgricuteur.VisibleIndex = 2;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn1.Caption = "Détail";
+            this.gridColumn1.ColumnEdit = this.BtnDetail;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
             // 
             // layoutControlGroup2
             // 
@@ -442,6 +468,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.achatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnImprimerTicket)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -489,5 +516,7 @@
         private DevExpress.XtraEditors.SimpleButton BtnActualiser;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit BtnDetail;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

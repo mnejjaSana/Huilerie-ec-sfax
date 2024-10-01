@@ -110,9 +110,13 @@
             this.colMontantReglement});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowFooter = true;
             // 
             // colcin
             // 
+            this.colcin.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colcin.AppearanceHeader.Options.UseFont = true;
             this.colcin.Caption = "CIN";
             this.colcin.FieldName = "cin";
             this.colcin.Name = "colcin";
@@ -122,6 +126,8 @@
             // 
             // colFullName
             // 
+            this.colFullName.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colFullName.AppearanceHeader.Options.UseFont = true;
             this.colFullName.Caption = "Nom & Prénom";
             this.colFullName.FieldName = "FullName";
             this.colFullName.Name = "colFullName";
@@ -131,10 +137,14 @@
             // 
             // colMontantReglement
             // 
+            this.colMontantReglement.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colMontantReglement.AppearanceHeader.Options.UseFont = true;
             this.colMontantReglement.Caption = "Montant";
             this.colMontantReglement.FieldName = "MontantReglement";
             this.colMontantReglement.Name = "colMontantReglement";
             this.colMontantReglement.OptionsColumn.AllowEdit = false;
+            this.colMontantReglement.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MontantReglement", "={0:0.##}")});
             this.colMontantReglement.Visible = true;
             this.colMontantReglement.VisibleIndex = 2;
             // 
@@ -187,7 +197,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmDetailAvanceImpo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Liste Personnes";
+            this.Text = "Détail Avance avec Impo";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmDetailAvanceImpo_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

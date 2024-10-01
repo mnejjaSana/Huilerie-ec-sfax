@@ -547,6 +547,10 @@ namespace Gestion_de_Stock.Forms
                 return;
             }
 
+           
+
+
+
             #endregion
             // OLIVE
             else if (comboBoxTypeAchat.Text.Equals("Olive"))
@@ -1969,8 +1973,6 @@ namespace Gestion_de_Stock.Forms
 
                 }
 
-
-
                 // new work
                 decimal MontantRegleFinal = 0m;
                 List<Personne_Passager> ListePassagers = new List<Personne_Passager>();
@@ -1992,8 +1994,8 @@ namespace Gestion_de_Stock.Forms
                     }
                     if (ListePassagers.Count == 0)
                     {
-                        XtraMessageBox.Show("Merci d'ajouter des personnes", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                        return;
+                        A.PersonnesPassagers = null;
+                        MontantRegle = MontantRegleFinal;
                     }
                     else
                     {
@@ -2019,6 +2021,10 @@ namespace Gestion_de_Stock.Forms
                     }
                 }
 
+
+
+
+
                 A.TypeAchat = TypeAchat.Avance;
                 A.Avance = true;
                 A.NuméroBon = null;
@@ -2037,9 +2043,9 @@ namespace Gestion_de_Stock.Forms
                 A.Numero = "AVN" + (A.Id).ToString("D8");
                 db.SaveChanges();
 
-                if(A.PersonnesPassagers!=null)
+                if (A.PersonnesPassagers != null)
                 {
-                    foreach(var item in A.PersonnesPassagers)
+                    foreach (var item in A.PersonnesPassagers)
                     {
                         item.Numero = A.Numero;
                         db.SaveChanges();
@@ -2243,6 +2249,7 @@ namespace Gestion_de_Stock.Forms
             }
 
 
+           
             db.SaveChanges();
 
 
@@ -2298,7 +2305,6 @@ namespace Gestion_de_Stock.Forms
 
                         xrAvancePersonne.Parameters["RsSte"].Value = societedb.RaisonSocial;
 
-                        xrAvancePersonne.Parameters["RsSte"].Visible = false;
                         xrAvancePersonne.Parameters["NumAvn"].Value = A.Numero;
 
                         List<Personne_Passager> personnes = new List<Personne_Passager>();
@@ -2314,11 +2320,6 @@ namespace Gestion_de_Stock.Forms
 
                     }
                 }
-
-
-
-
-
 
             }
 
@@ -2436,6 +2437,11 @@ namespace Gestion_de_Stock.Forms
             numcheque.Visibility = LayoutVisibility.Never;
             bank.Visibility = LayoutVisibility.Never;
             layoutControlItem12.Visibility = LayoutVisibility.Never;
+
+            //vider grid personne
+            for (int i = 0; i < gridView4.RowCount;)
+                gridView4.DeleteRow(i);
+
             #endregion  Remise a zero
 
 
@@ -2632,6 +2638,11 @@ namespace Gestion_de_Stock.Forms
 
 
             }
+
+
+          
+
+
 
         }
 
@@ -3895,6 +3906,47 @@ namespace Gestion_de_Stock.Forms
         private void gridControl2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnSupprimer_Click(object sender, EventArgs e)
+        {
+            int visibleIndex = gridView4.GetVisibleIndex(gridView4.FocusedRowHandle);
+            gridView4.DeleteRow(visibleIndex);
+        }
+
+        private void gridView4_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName == "cin")
+            {
+                var newValue = e.Value as string;
+
+                // Vérifiez si la nouvelle valeur n'est pas nulle et contient exactement 8 chiffres
+                if (!string.IsNullOrEmpty(newValue))
+                {
+                    // Vérifiez si la longueur est 8 ou contient des caractères non numériques
+                    if (newValue.Length != 8 || !newValue.All(char.IsDigit))
+                    {
+                        // Affichez un message d'erreur
+                        XtraMessageBox.Show("Le CIN doit contenir exactement 8 chiffres.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Vérifiez si le CIN existe déjà dans le GridView
+                    for (int row = 0; row < gridView4.DataRowCount; row++)
+                    {
+                        var existingCIN = gridView4.GetRowCellValue(row, "cin") as string;
+                        if (existingCIN == newValue)
+                        {
+                            // Affichez un message d'erreur si le CIN existe déjà
+                            XtraMessageBox.Show("Ce CIN existe déjà.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            // Rétablir la valeur précédente ou effacer la cellule
+                            gridView4.SetRowCellValue(e.RowHandle, e.Column, null); // ou utilisez la valeur précédente
+                            return;
+                        }
+                    }
+                }
+
+            }
         }
     }
 }

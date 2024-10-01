@@ -29,6 +29,10 @@ namespace Gestion_de_Stock.Forms
             InitializeComponent();
             db = new Model.ApplicationContext();
         }
-      
+
+        private void FrmDetailAvanceImpo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _FrmDetailAvanceImpo = null;
+        }
     }
 }
