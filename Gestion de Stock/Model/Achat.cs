@@ -11,7 +11,7 @@ namespace Gestion_de_Stock.Model
 
     public class Achat
     {
-      
+
         public Achat()
         {
             PersonnesPassagers = new List<Personne_Passager>(); // Initialisation ici
@@ -30,11 +30,11 @@ namespace Gestion_de_Stock.Model
 
             get
             {
-                if (this.TypeAchat == TypeAchat.Olive )
+                if (this.TypeAchat == TypeAchat.Olive)
                 { return "Olive"; }
 
                 else if (this.TypeAchat == TypeAchat.Huile || this.TypeAchat == TypeAchat.Base)
-                    { return "Huile"; }
+                { return "Huile"; }
 
                 else return "Service";
             }
@@ -49,9 +49,11 @@ namespace Gestion_de_Stock.Model
 
         public EtatAchat EtatAchat { get; set; }
 
-        public string NomEtatAchat {
+        public string NomEtatAchat
+        {
 
-            get {
+            get
+            {
                 if (this.EtatAchat == EtatAchat.Reglee)
                 { return "Réglé"; }
 
@@ -61,7 +63,7 @@ namespace Gestion_de_Stock.Model
                 else return "Non Réglé";
             }
         }
-  
+
         public decimal MontantRegle { get; set; }
 
         public decimal ResteApayer { get { return MtAPayeAvecImpo - MontantRegle; } }
@@ -106,24 +108,25 @@ namespace Gestion_de_Stock.Model
 
         public decimal MontantReglement { get; set; }//10000
 
-        public decimal MtAdeduire {get;set; } // 100 => 1% de 10000
+        public decimal MtAdeduire { get; set; } // 100 => 1% de 10000
 
         public decimal MtAPayeAvecImpo { get; set; }// 9900
 
-        public int QteHORepport {
+        public int QteHORepport
+        {
             get
             {
-                int Qte=0;
+                int Qte = 0;
 
-                if (QteHuileAchetee > 0 && QteOliveAchetee==0)
+                if (QteHuileAchetee > 0 && QteOliveAchetee == 0)
                 {
                     Qte = QteHuileAchetee;
                 }
-                else if(QteOliveAchetee > 0 && QteHuileAchetee == 0)
+                else if (QteOliveAchetee > 0 && QteHuileAchetee == 0)
                 {
                     Qte = QteOliveAchetee;
                 }
-                else if(this.TypeAchat== TypeAchat.Base)
+                else if (this.TypeAchat == TypeAchat.Base)
                 {
                     Qte = Convert.ToInt32(this.QteLitre);
                 }
@@ -137,11 +140,11 @@ namespace Gestion_de_Stock.Model
             {
                 string qualiteReport = "";
 
-                if (TypeOlive== ArticleAchat.Nchira && (TypeAchat== TypeAchat.Olive || TypeAchat == TypeAchat.Base))
+                if (TypeOlive == ArticleAchat.Nchira && (TypeAchat == TypeAchat.Olive || TypeAchat == TypeAchat.Base))
                 {
                     qualiteReport = "Nchira";
                 }
-                else if(TypeOlive == ArticleAchat.OliveVif && (TypeAchat == TypeAchat.Olive || TypeAchat == TypeAchat.Base))
+                else if (TypeOlive == ArticleAchat.OliveVif && (TypeAchat == TypeAchat.Olive || TypeAchat == TypeAchat.Base))
                 {
                     qualiteReport = "Olive Vif";
                 }
@@ -185,12 +188,37 @@ namespace Gestion_de_Stock.Model
                 {
                     PrixUnitaire = PrixLitre;
                 }
-               
+
                 return PrixUnitaire;
             }
         }
 
-       public List<Personne_Passager> PersonnesPassagers { get; set; }
+        public decimal AvanceAvecAchatTicket
+        {
+            get
+            {
+                decimal AvanceAvecAchatTicket = 0m;
+
+                if (AvanceAvecAchat >= 3000)
+                {
+                    decimal deduit = decimal.Divide(AvanceAvecAchat, 100);
+                    AvanceAvecAchatTicket = decimal.Subtract(AvanceAvecAchat, deduit);
+                }
+                else
+                {
+                    AvanceAvecAchatTicket = AvanceAvecAchat;
+                }
+
+                return AvanceAvecAchatTicket;
+            }
+        }
+
+
+
+
+
+
+        public List<Personne_Passager> PersonnesPassagers { get; set; }
         public decimal MontantInitialAvance { get; set; }
     }
 }

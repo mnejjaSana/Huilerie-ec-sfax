@@ -109,7 +109,7 @@
             // xrTableCell5
             // 
             this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "AvanceAvecAchat", "{0:n3}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "AvanceAvecAchatTicket", "{0:n3}")});
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
             this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
