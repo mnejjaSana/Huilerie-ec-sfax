@@ -734,6 +734,10 @@
     <Compile Include="Migrations\202410010924073_personnepassager in historique achat .designer.cs">
       <DependentUpon>202410010924073_personnepassager in historique achat .cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410011030229_montantinitiaavance.cs" />
+    <Compile Include="Migrations\202410011030229_montantinitiaavance.designer.cs">
+      <DependentUpon>202410011030229_montantinitiaavance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Achat.cs" />
     <Compile Include="Model\Affaire.cs" />
@@ -1230,6 +1234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410010924073_personnepassager in historique achat .resx">
       <DependentUpon>202410010924073_personnepassager in historique achat .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410011030229_montantinitiaavance.resx">
+      <DependentUpon>202410011030229_montantinitiaavance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

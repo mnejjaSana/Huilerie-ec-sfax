@@ -191,6 +191,6 @@ namespace Gestion_de_Stock.Model
         }
 
        public List<Personne_Passager> PersonnesPassagers { get; set; }
-
+        public decimal MontantInitialAvance { get; set; }
     }
 }
