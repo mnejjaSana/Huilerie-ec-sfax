@@ -538,64 +538,66 @@ namespace Gestion_de_Stock.Forms
             }
         }
 
-        private void btnAjouterReg_Click(object sender, EventArgs e)
+        private void BtnReglement_Click(object sender, EventArgs e)
         {
-            List<Achat> ListeGrid = new List<Achat>();
-            //int rowHandle3 = 0;
-            var Gride = System.Windows.Forms.Application.OpenForms.OfType<FrmListeAchats>().First().gridView1;
-            for (int j = 0; j < Gride.SelectedRowsCount; j++)
-            {
-                if (Gride.GetSelectedRows()[j] >= 0)
-                    ListeGrid.Add(Gride.GetRow(Gride.GetSelectedRows()[j]) as Achat);
-            }
-            if (ListeGrid.Count == 0)
-            {
-
-                XtraMessageBox.Show("Aucune ligne sélectionnée ", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-
-                var firstAgriculteur = ListeGrid.First().Founisseur;
-
-                if (ListeGrid.Any(a => a.Founisseur != firstAgriculteur))
+           
+                List<Achat> ListeGrid = new List<Achat>();
+                //int rowHandle3 = 0;
+                var Gride = System.Windows.Forms.Application.OpenForms.OfType<FrmListeAchats>().First().gridView1;
+                for (int j = 0; j < Gride.SelectedRowsCount; j++)
                 {
-                    XtraMessageBox.Show("Veuillez sélectionner des achats du même agriculteur", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (Gride.GetSelectedRows()[j] >= 0)
+                        ListeGrid.Add(Gride.GetRow(Gride.GetSelectedRows()[j]) as Achat);
+                }
+                if (ListeGrid.Count == 0)
+                {
+
+                    XtraMessageBox.Show("Aucune ligne sélectionnée ", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    FormshowNotParent(Forms.FrmAjouterReglementAchat.InstanceFrmAjouterReglementAchat);
 
-                    if (Application.OpenForms.OfType<FrmAjouterReglementAchat>().FirstOrDefault() != null)
+                    var firstAgriculteur = ListeGrid.First().Founisseur;
+
+                    if (ListeGrid.Any(a => a.Founisseur != firstAgriculteur))
                     {
-                        foreach (var Empolyeur in ListeGrid)
-                        {
-                            if (Empolyeur.TypeAchat == TypeAchat.Base || Empolyeur.TypeAchat == TypeAchat.Huile)
-                            {
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().layoutControlMtAPayer.Text = "Montant à Payer";
-                            }
-
-                            var achatIds = ListeGrid.Select(a => a.Numero.ToString()).ToArray();
-                          
-                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtCodeAchat.Text = string.Join(", ", achatIds);
-                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAgriculteur.Text = firstAgriculteur.FullName;
-                            decimal totalMontantReglement = ListeGrid.Sum(a => a.MontantReglement);
-                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantOperation.Text = (Math.Truncate(totalMontantReglement * 1000m) / 1000m).ToString();
-                            decimal totalAvance = ListeGrid.Sum(a => a.MontantRegle);
-                            decimal totalResteApayer = ListeGrid.Sum(a => a.ResteApayer);
-                            decimal totalMontantEncaisse = totalResteApayer; // Assuming this is intended to be the same as ResteApayer
-
-                            // Update the respective text fields
-                             Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAvance.Text = (Math.Truncate(totalAvance * 1000m) / 1000m).ToString();
-                             Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtSolde.Text = (Math.Truncate(totalResteApayer * 1000m) / 1000m).ToString();
-                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantEncaisse.Text = (Math.Truncate(totalMontantEncaisse * 1000m) / 1000m).ToString();
-
-
-                        }
+                        XtraMessageBox.Show("Veuillez sélectionner des achats du même agriculteur", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    else
+                    {
+                        FormshowNotParent(Forms.FrmAjouterReglementAchat.InstanceFrmAjouterReglementAchat);
 
+                        if (Application.OpenForms.OfType<FrmAjouterReglementAchat>().FirstOrDefault() != null)
+                        {
+                            foreach (var Empolyeur in ListeGrid)
+                            {
+                                if (Empolyeur.TypeAchat == TypeAchat.Base || Empolyeur.TypeAchat == TypeAchat.Huile)
+                                {
+                                    Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().layoutControlMtAPayer.Text = "Montant à Payer";
+                                }
+
+                                var achatIds = ListeGrid.Select(a => a.Numero.ToString()).ToArray();
+
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtCodeAchat.Text = string.Join(", ", achatIds);
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAgriculteur.Text = firstAgriculteur.FullName;
+                                decimal totalMontantReglement = ListeGrid.Sum(a => a.MontantReglement);
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantOperation.Text = (Math.Truncate(totalMontantReglement * 1000m) / 1000m).ToString();
+                                decimal totalAvance = ListeGrid.Sum(a => a.MontantRegle);
+                                decimal totalResteApayer = ListeGrid.Sum(a => a.ResteApayer);
+                                decimal totalMontantEncaisse = totalResteApayer; // Assuming this is intended to be the same as ResteApayer
+
+                                // Update the respective text fields
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAvance.Text = (Math.Truncate(totalAvance * 1000m) / 1000m).ToString();
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtSolde.Text = (Math.Truncate(totalResteApayer * 1000m) / 1000m).ToString();
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantEncaisse.Text = (Math.Truncate(totalMontantEncaisse * 1000m) / 1000m).ToString();
+
+
+                            }
+                        }
+
+                    }
                 }
-            }
+            
         }
     }
 }      

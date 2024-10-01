@@ -28,5 +28,6 @@ namespace Gestion_de_Stock.Model
         public bool AvecAmpoAjouterREG { get; set; }
         public decimal MtAdeduireAjouterREG { get; set; }
         public decimal MtAPayeAvecImpoAjouterREG { get; set; }
+        public List<Personne_Passager> PersonnesPassagers { get; set; }
     }
 }
