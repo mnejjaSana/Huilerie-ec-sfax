@@ -227,7 +227,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
             this.BtnSupprimer.Name = "BtnSupprimer";
             this.BtnSupprimer.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-             this.BtnSupprimer.Click += new System.EventHandler(this.BtnSupprimer_Click_1);
+            this.BtnSupprimer.Click += new System.EventHandler(this.BtnSupprimer_Click_1);
             // 
             // TxtAvance
             // 
