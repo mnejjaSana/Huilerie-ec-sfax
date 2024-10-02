@@ -662,7 +662,7 @@ namespace Gestion_de_Stock.Forms
 
                         if (totalGrid != MontantRegle)
                         {
-                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés avec les personnes!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                             return;
 
                         }
@@ -1123,7 +1123,7 @@ namespace Gestion_de_Stock.Forms
 
                         if (totalGrid != MontantRegle)
                         {
-                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés avec les personnes!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                             return;
 
                         }
@@ -1510,7 +1510,7 @@ namespace Gestion_de_Stock.Forms
 
                         if (totalGrid != MontantRegle)
                         {
-                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés avec les personnes!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                             return;
 
                         }
@@ -2235,7 +2235,7 @@ namespace Gestion_de_Stock.Forms
                         }
                         else
                         {
-                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                            XtraMessageBox.Show("Merci de vérifier les montants ajoutés avec les personnes!", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
                             return;
                         }
                     }

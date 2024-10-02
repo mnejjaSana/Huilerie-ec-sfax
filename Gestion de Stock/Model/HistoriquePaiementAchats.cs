@@ -12,6 +12,7 @@ namespace Gestion_de_Stock.Model
     {
         public HistoriquePaiementAchats()
         {
+            PersonnesPassagers = new List<Personne_Passager>(); // Initialisation ici
             DateCreation = DateTime.Now;
         }
 

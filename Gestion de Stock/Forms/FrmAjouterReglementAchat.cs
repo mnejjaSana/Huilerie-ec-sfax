@@ -502,103 +502,132 @@ namespace Gestion_de_Stock.Forms
                 }
                 db.HistoriquePaiementAchats.Add(HP);
                 db.SaveChanges();
-                foreach (var item in ListePassagers)
-                {
-                    List<string> numeroachats = db.Achats
-             .Where(x => TxtCodeAchat.Text.Contains(x.Numero))
-             .OrderBy(x => x.Date)
-             .Select(x => x.Numero) // Select only the Numero property
-             .ToList();
 
-                    foreach (var code in numeroachats)
+                List<string> numeroachats = db.Achats
+            .Where(x => TxtCodeAchat.Text.Contains(x.Numero))
+            .OrderByDescending(x => x.Date)
+            .Select(x => x.Numero) // Select only the Numero property
+            .ToList();
+             
+                    for (int j = ListePassagers.Count - 1; j >= 0; j--)
                     {
-
+                    for (int i = numeroachats.Count - 1; i >= 0; i--)
+                    {
+                        var code = numeroachats[i];
                         var Achatdb = db.Achats
-            .Where(x => x.Numero.Equals(code.Trim())) // Match the Numero with the current code
-            .OrderBy(x => x.Date)
-            .FirstOrDefault();
+                            .Where(x => x.Numero.Equals(code.Trim())) // Match the Numero with the current code
+                            .OrderBy(x => x.Date)
+                            .FirstOrDefault();
+
                         if (Achatdb != null)
                         {
-
-
-                            if (item.MontantReglement == Achatdb.ResteApayer)
+                            if (ListePassagers[j].MontantReglement == Achatdb.ResteApayer)
                             {
-                                Achatdb.PersonnesPassagers.Add(item);
-                                MontantEncaisse -= item.MontantReglement;
-
+                                Achatdb.PersonnesPassagers.Add(ListePassagers[j]);
+                                MontantEncaisse -= ListePassagers[j].MontantReglement;
 
                                 Achatdb.EtatAchat = EtatAchat.Reglee;
                                 Achatdb.MontantRegle = Achatdb.MontantReglement;
 
-                                HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats();
-
-                                HPAchat.Founisseur = Achatdb.Founisseur;
-                                HPAchat.NumAchat = Achatdb.Numero;
-                                HPAchat.MontantReglement = Achatdb.MontantReglement;
-                                HPAchat.MontantRegle = Achatdb.MontantReglement;
-                                HPAchat.ResteApayer = 0;
-                                HPAchat.Commentaire = "Règlement Caisse";
-                                HPAchat.TypeAchat = Achatdb.TypeAchat;
+                                HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats
+                                {
+                                    Founisseur = Achatdb.Founisseur,
+                                    NumAchat = Achatdb.Numero,
+                                    MontantReglement = Achatdb.MontantReglement,
+                                    MontantRegle = ListePassagers[j].MontantReglement,
+                                    ResteApayer = 0,
+                                    Commentaire = "Règlement Caisse",
+                                    TypeAchat = Achatdb.TypeAchat,
+                                   
+                            };
+                                HPAchat.PersonnesPassagers.Add(new Personne_Passager
+                                {
+                                    FullName = ListePassagers[j].FullName,
+                                    cin = ListePassagers[j].cin,
+                                    MontantReglement = ListePassagers[j].MontantReglement,
+                                    Numero= Achatdb.Numero
+                                });
                                 db.HistoriquePaiementAchats.Add(HPAchat);
-                                codesAchats.Remove(code);  // Corriger "remove" en "Remove"
 
-                                // Sortir de la boucle
+                                numeroachats.RemoveAt(i); // Supprime l'élément à l'index i
+                                ListePassagers.RemoveAt(j);
                                 break;
                             }
-                            else if (item.MontantReglement < Achatdb.ResteApayer)
+
+                            else if (ListePassagers[j].MontantReglement < Achatdb.ResteApayer)
                             {
 
-                                Achatdb.PersonnesPassagers.Add(item);
-                                MontantEncaisse -= item.MontantReglement;
+                                Achatdb.PersonnesPassagers.Add(ListePassagers[j]);
+                                MontantEncaisse -= ListePassagers[j].MontantReglement;
 
 
                                 Achatdb.EtatAchat = EtatAchat.PartiellementReglee;
-                                Achatdb.MontantRegle = item.MontantReglement;
-
+                                Achatdb.MontantRegle += ListePassagers[j].MontantReglement;
+                                db.SaveChanges();
                                 HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats();
 
                                 HPAchat.Founisseur = Achatdb.Founisseur;
                                 HPAchat.NumAchat = Achatdb.Numero;
                                 HPAchat.MontantReglement = Achatdb.MontantReglement;
-                                HPAchat.MontantRegle = item.MontantReglement;
+                                HPAchat.MontantRegle = ListePassagers[j].MontantReglement;
                                 HPAchat.ResteApayer = decimal.Subtract(Achatdb.MontantReglement, Achatdb.MontantRegle);
                                 HPAchat.Commentaire = "Règlement Caisse";
                                 HPAchat.TypeAchat = Achatdb.TypeAchat;
+                                HPAchat.PersonnesPassagers.Add(new Personne_Passager
+                                {
+                                    FullName = ListePassagers[j].FullName,
+                                    cin = ListePassagers[j].cin,
+                                    MontantReglement = ListePassagers[j].MontantReglement,
+                                    Numero = Achatdb.Numero
+                                });
                                 db.HistoriquePaiementAchats.Add(HPAchat);
+                                ListePassagers.RemoveAt(j);
                                 break;
                             }
-                            else if (item.MontantReglement > Achatdb.ResteApayer)
+                            else if (ListePassagers[j].MontantReglement > Achatdb.ResteApayer)
                             {
 
-                                Achatdb.PersonnesPassagers.Add(item);
-                                item.MontantReglement = item.MontantReglement - Achatdb.ResteApayer;//200
+                                Achatdb.PersonnesPassagers.Add(ListePassagers[j]);
+                               
                                 MontantEncaisse -= Achatdb.ResteApayer;
 
-                                decimal reste = Achatdb.ResteApayer;
+                                decimal reste = Achatdb.ResteApayer;//200;
                                 Achatdb.EtatAchat = EtatAchat.Reglee;
 
-                                Achatdb.MontantRegle = Achatdb.MontantRegle + Achatdb.ResteApayer;
-
+                                Achatdb.MontantRegle += Achatdb.ResteApayer;
+                                db.SaveChanges();
                                 HistoriquePaiementAchats HPAchat = new HistoriquePaiementAchats();
 
                                 HPAchat.Founisseur = Achatdb.Founisseur;
                                 HPAchat.NumAchat = Achatdb.Numero;
                                 HPAchat.MontantReglement = Achatdb.MontantReglement;
-                                HPAchat.MontantRegle = reste;
+                                HPAchat.MontantRegle =reste;
                                 HPAchat.ResteApayer = 0;
                                 HPAchat.Commentaire = "Règlement Caisse";
                                 HPAchat.TypeAchat = Achatdb.TypeAchat;
+                                HPAchat.PersonnesPassagers.Add(new Personne_Passager
+                                {
+                                    FullName = ListePassagers[j].FullName,
+                                    cin = ListePassagers[j].cin,
+                                    MontantReglement = reste,
+                                    Numero = Achatdb.Numero
+                                });
                                 db.HistoriquePaiementAchats.Add(HPAchat);
-                                codesAchats.Remove(code);
+                                numeroachats.RemoveAt(i);
 
+                                ListePassagers[j].MontantReglement -= reste;
 
                             }
                             db.SaveChanges();
-                        }
 
+                        }
 
                     }
                 }
+                        
+                       
+                     
+                  
                 // Depense 
                 Depense D = new Depense();
 
