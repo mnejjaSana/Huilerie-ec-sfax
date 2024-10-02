@@ -63,6 +63,7 @@
             this.PrixU = new DevExpress.XtraReports.UI.XRLabel();
             this.PU = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.montantAvance = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -109,7 +110,7 @@
             // xrTableCell5
             // 
             this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "AvanceAvecAchatTicket", "{0:n3}")});
+            new DevExpress.XtraReports.UI.XRBinding(this.montantAvance, "Text", "{0:n3}")});
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
             this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -420,6 +421,12 @@
             this.objectDataSource1.DataSource = typeof(Gestion_de_Stock.Model.Achat);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // montantAvance
+            // 
+            this.montantAvance.Description = "montantAvance";
+            this.montantAvance.Name = "montantAvance";
+            this.montantAvance.Visible = false;
+            // 
             // TickeAvanceAvecAchat
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -439,7 +446,8 @@
             this.RsSte,
             this.Type,
             this.QteAchetee,
-            this.PU});
+            this.PU,
+            this.montantAvance});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -484,5 +492,6 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
+        private DevExpress.XtraReports.Parameters.Parameter montantAvance;
     }
 }
