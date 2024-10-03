@@ -141,20 +141,18 @@
             this.layoutControl1.Controls.Add(this.groupControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1308, 750);
+            this.layoutControl1.Size = new System.Drawing.Size(1121, 609);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.layoutControl2);
-            this.groupControl1.Location = new System.Drawing.Point(16, 16);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1276, 718);
+            this.groupControl1.Size = new System.Drawing.Size(1097, 585);
             this.groupControl1.TabIndex = 4;
             // 
             // layoutControl2
@@ -168,11 +166,10 @@
             this.layoutControl2.Controls.Add(this.DateDebut);
             this.layoutControl2.Controls.Add(this.DateFin);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl2.Location = new System.Drawing.Point(2, 25);
-            this.layoutControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.layoutControl2.Location = new System.Drawing.Point(2, 20);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(1272, 691);
+            this.layoutControl2.Size = new System.Drawing.Size(1093, 563);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -181,9 +178,10 @@
             this.BtnReglement.Appearance.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnReglement.Appearance.Options.UseFont = true;
             this.BtnReglement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnReglement.ImageOptions.Image")));
-            this.BtnReglement.Location = new System.Drawing.Point(327, 78);
+            this.BtnReglement.Location = new System.Drawing.Point(280, 62);
+            this.BtnReglement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnReglement.Name = "BtnReglement";
-            this.BtnReglement.Size = new System.Drawing.Size(305, 27);
+            this.BtnReglement.Size = new System.Drawing.Size(264, 22);
             this.BtnReglement.StyleController = this.layoutControl2;
             this.BtnReglement.TabIndex = 14;
             this.BtnReglement.Text = "Ajouter Règlement";
@@ -194,10 +192,9 @@
             this.BtnActualiser.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnActualiser.Appearance.Options.UseFont = true;
             this.BtnActualiser.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnActualiser.ImageOptions.Image")));
-            this.BtnActualiser.Location = new System.Drawing.Point(1157, 16);
-            this.BtnActualiser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BtnActualiser.Location = new System.Drawing.Point(995, 12);
             this.BtnActualiser.Name = "BtnActualiser";
-            this.BtnActualiser.Size = new System.Drawing.Size(99, 28);
+            this.BtnActualiser.Size = new System.Drawing.Size(86, 22);
             this.BtnActualiser.StyleController = this.layoutControl2;
             this.BtnActualiser.TabIndex = 11;
             this.BtnActualiser.Text = "Actualiser";
@@ -206,9 +203,9 @@
             // label1
             // 
             this.label1.Image = global::Gestion_de_Stock.Properties.Resources.EC;
-            this.label1.Location = new System.Drawing.Point(16, 567);
+            this.label1.Location = new System.Drawing.Point(12, 462);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1240, 108);
+            this.label1.Size = new System.Drawing.Size(1069, 89);
             this.label1.TabIndex = 9;
             // 
             // BtnExportExcel
@@ -216,10 +213,9 @@
             this.BtnExportExcel.Appearance.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportExcel.Appearance.Options.UseFont = true;
             this.BtnExportExcel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnExportExcel.ImageOptions.Image")));
-            this.BtnExportExcel.Location = new System.Drawing.Point(648, 78);
-            this.BtnExportExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BtnExportExcel.Location = new System.Drawing.Point(558, 62);
             this.BtnExportExcel.Name = "BtnExportExcel";
-            this.BtnExportExcel.Size = new System.Drawing.Size(296, 27);
+            this.BtnExportExcel.Size = new System.Drawing.Size(255, 22);
             this.BtnExportExcel.StyleController = this.layoutControl2;
             this.BtnExportExcel.TabIndex = 8;
             this.BtnExportExcel.Text = "Export Excel";
@@ -230,10 +226,9 @@
             this.BtnExportPdF.Appearance.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportPdF.Appearance.Options.UseFont = true;
             this.BtnExportPdF.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnExportPdF.ImageOptions.Image")));
-            this.BtnExportPdF.Location = new System.Drawing.Point(950, 78);
-            this.BtnExportPdF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BtnExportPdF.Location = new System.Drawing.Point(817, 62);
             this.BtnExportPdF.Name = "BtnExportPdF";
-            this.BtnExportPdF.Size = new System.Drawing.Size(306, 27);
+            this.BtnExportPdF.Size = new System.Drawing.Size(264, 22);
             this.BtnExportPdF.StyleController = this.layoutControl2;
             this.BtnExportPdF.TabIndex = 7;
             this.BtnExportPdF.Text = "Export PDF";
@@ -242,13 +237,11 @@
             // gridControl1
             // 
             this.gridControl1.DataSource = this.achatBindingSource;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             gridLevelNode1.RelationName = "Level1";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gridControl1.Location = new System.Drawing.Point(16, 111);
+            this.gridControl1.Location = new System.Drawing.Point(12, 88);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.ViewDocument,
@@ -258,7 +251,7 @@
             this.repositoryImprimerTicket,
             this.ImprimerTicket,
             this.repositoryImprimerFacture});
-            this.gridControl1.Size = new System.Drawing.Size(1240, 450);
+            this.gridControl1.Size = new System.Drawing.Size(1069, 370);
             this.gridControl1.TabIndex = 6;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -760,14 +753,13 @@
             // DateDebut
             // 
             this.DateDebut.EditValue = null;
-            this.DateDebut.Location = new System.Drawing.Point(94, 50);
-            this.DateDebut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DateDebut.Location = new System.Drawing.Point(75, 38);
             this.DateDebut.Name = "DateDebut";
             this.DateDebut.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.DateDebut.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DateDebut.Size = new System.Drawing.Size(539, 22);
+            this.DateDebut.Size = new System.Drawing.Size(469, 20);
             this.DateDebut.StyleController = this.layoutControl2;
             this.DateDebut.TabIndex = 5;
             this.DateDebut.EditValueChanged += new System.EventHandler(this.dateEdit2_EditValueChanged);
@@ -775,14 +767,13 @@
             // DateFin
             // 
             this.DateFin.EditValue = null;
-            this.DateFin.Location = new System.Drawing.Point(717, 50);
-            this.DateFin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DateFin.Location = new System.Drawing.Point(611, 38);
             this.DateFin.Name = "DateFin";
             this.DateFin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.DateFin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DateFin.Size = new System.Drawing.Size(539, 22);
+            this.DateFin.Size = new System.Drawing.Size(470, 20);
             this.DateFin.StyleController = this.layoutControl2;
             this.DateFin.TabIndex = 4;
             this.DateFin.EditValueChanged += new System.EventHandler(this.DateFin_EditValueChanged);
@@ -806,7 +797,7 @@
             this.emptySpaceItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1272, 691);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1093, 563);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem2
@@ -814,18 +805,18 @@
             this.layoutControlItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem2.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem2.Control = this.DateFin;
-            this.layoutControlItem2.Location = new System.Drawing.Point(623, 34);
+            this.layoutControlItem2.Location = new System.Drawing.Point(536, 26);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(623, 28);
+            this.layoutControlItem2.Size = new System.Drawing.Size(537, 24);
             this.layoutControlItem2.Text = "Date Fin";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(75, 17);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(60, 15);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(622, 62);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(536, 50);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(10, 33);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(10, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
@@ -833,54 +824,54 @@
             this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.Control = this.DateDebut;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(623, 28);
+            this.layoutControlItem3.Size = new System.Drawing.Size(536, 24);
             this.layoutControlItem3.Text = "Date Début";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(75, 17);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(60, 15);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.gridControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 95);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 76);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1246, 456);
+            this.layoutControlItem4.Size = new System.Drawing.Size(1073, 374);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.BtnExportPdF;
-            this.layoutControlItem5.Location = new System.Drawing.Point(934, 62);
+            this.layoutControlItem5.Location = new System.Drawing.Point(805, 50);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(312, 33);
+            this.layoutControlItem5.Size = new System.Drawing.Size(268, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.BtnExportExcel;
-            this.layoutControlItem6.Location = new System.Drawing.Point(632, 62);
+            this.layoutControlItem6.Location = new System.Drawing.Point(546, 50);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(302, 33);
+            this.layoutControlItem6.Size = new System.Drawing.Size(259, 26);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.label1;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 551);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 450);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(1246, 114);
+            this.layoutControlItem7.Size = new System.Drawing.Size(1073, 93);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.BtnActualiser;
-            this.layoutControlItem9.Location = new System.Drawing.Point(1141, 0);
+            this.layoutControlItem9.Location = new System.Drawing.Point(983, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(105, 34);
+            this.layoutControlItem9.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -889,32 +880,32 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(622, 34);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(536, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(622, 0);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(536, 0);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(519, 34);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(447, 26);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.BtnReglement;
-            this.layoutControlItem11.Location = new System.Drawing.Point(311, 62);
+            this.layoutControlItem11.Location = new System.Drawing.Point(268, 50);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(311, 33);
+            this.layoutControlItem11.Size = new System.Drawing.Size(268, 26);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 62);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 50);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(311, 33);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(268, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup1
@@ -925,7 +916,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1308, 750);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1121, 609);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -933,18 +924,17 @@
             this.layoutControlItem1.Control = this.groupControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1282, 724);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1101, 589);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // FrmListeAchats
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 750);
+            this.ClientSize = new System.Drawing.Size(1121, 609);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmListeAchats";
             this.Text = "Liste des Achats";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmListeAchats_FormClosed);

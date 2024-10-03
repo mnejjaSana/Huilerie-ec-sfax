@@ -4149,35 +4149,63 @@ namespace Gestion_de_Stock.Forms
 
         private void gridView4_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column.FieldName == "cin")
-            {
-                var newValue = e.Value as string;
-
-                // Vérifiez si la nouvelle valeur n'est pas nulle et contient exactement 8 chiffres
-                if (!string.IsNullOrEmpty(newValue))
+           
+                if (e.Column.FieldName == "cin")
                 {
-                    // Vérifiez si la longueur est 8 ou contient des caractères non numériques
-                    if (newValue.Length != 8 || !newValue.All(char.IsDigit))
-                    {
-                        // Affichez un message d'erreur
-                        XtraMessageBox.Show("Le CIN doit contenir exactement 8 chiffres.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                        return;
-                    }
+                    var newValue = e.Value as string;
 
-                    // Vérifiez si le CIN existe déjà dans le GridView
-                    for (int row = 0; row < gridView4.DataRowCount; row++)
+                    // Vérifiez si la nouvelle valeur n'est pas nulle et contient exactement 8 chiffres
+                    if (!string.IsNullOrEmpty(newValue))
                     {
-                        var existingCIN = gridView4.GetRowCellValue(row, "cin") as string;
-                        if (existingCIN == newValue)
+                        // Vérifiez si la longueur est 8 ou contient des caractères non numériques
+                        if (newValue.Length != 8 || !newValue.All(char.IsDigit))
                         {
-                            // Affichez un message d'erreur si le CIN existe déjà
-                            XtraMessageBox.Show("Ce CIN existe déjà.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                            // Rétablir la valeur précédente ou effacer la cellule
-                            gridView4.SetRowCellValue(e.RowHandle, e.Column, null); // ou utilisez la valeur précédente
+                            // Affichez un message d'erreur
+                            XtraMessageBox.Show("Le CIN doit contenir exactement 8 chiffres.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                             return;
                         }
+                        
+                        for (int row = 0; row < gridView4.DataRowCount; row++)
+                        {
+                            var existingCIN = gridView4.GetRowCellValue(row, "cin") as string;
+                            if (existingCIN == newValue)
+                            {
+                                
+                                XtraMessageBox.Show("Ce CIN existe déjà.", "Configuration de l'application", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                               
+                                gridView4.SetRowCellValue(e.RowHandle, e.Column, null); 
+                                return;
+                            }
+                        }
                     }
+
                 }
+
+                if (e.Column.FieldName == "MontantReglement")
+                {
+                    var newValue = e.Value as decimal?;
+
+                   
+                    if (newValue.HasValue)
+                    {
+                        
+                        if (newValue.Value >= 3000)
+                        {
+                           
+                            XtraMessageBox.Show("Le montant de règlement doit être inférieur à 3000!",
+                                            "Configuration de l'application",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        gridView4.SetRowCellValue(e.RowHandle, e.Column, null);
+                        return;
+                        }
+
+                    }
+
+
+                
+            
+        
 
             }
         }

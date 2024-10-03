@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Convertisseur;
+using Convertisseur.Entite;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraPrinting;
-using System.Diagnostics;
-using DevExpress.XtraSplashScreen;
-using System.Threading;
-using Gestion_de_Stock.Model;
-using System.IO;
-using Gestion_de_Stock.Repport;
 using DevExpress.XtraReports.UI;
-using System.Data.Entity;
+using Gestion_de_Stock.Model;
 using Gestion_de_Stock.Model.Enumuration;
-using Convertisseur;
-using Convertisseur.Entite;
-using DevExpress.LookAndFeel;
+using Gestion_de_Stock.Repport;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Gestion_de_Stock.Forms
 {
@@ -34,7 +25,10 @@ namespace Gestion_de_Stock.Forms
             get
             {
                 if (_FrmListeAchats == null)
+                {
                     _FrmListeAchats = new FrmListeAchats();
+                }
+
                 return _FrmListeAchats;
             }
         }
@@ -46,14 +40,14 @@ namespace Gestion_de_Stock.Forms
 
         private void dateEdit2_EditValueChanged(object sender, EventArgs e)
         {
-           
+
             DateTime DateMin = DateDebut.DateTime;
             DateTime DateMaxJour = DateFin.DateTime.Date.AddDays(1).AddSeconds(-1);
 
 
             if (DateMaxJour.ToString("dd/MM/yyyy").Equals("01/01/0001"))
             {
-                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin  && x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin && x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
             }
             else
             {
@@ -74,11 +68,11 @@ namespace Gestion_de_Stock.Forms
             }
             if (DateMaxJour.ToString("dd/MM/yyyy").Equals("01/01/0001"))
             {
-                achatBindingSource.DataSource = db.Achats.Where(x => x.Date>= DateMin && x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin && x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
             }
             else
             {
-                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin  && x.Date <= DateMaxJour && x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
+                achatBindingSource.DataSource = db.Achats.Where(x => x.Date >= DateMin && x.Date <= DateMaxJour && x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
             }
         }
 
@@ -89,14 +83,14 @@ namespace Gestion_de_Stock.Forms
 
         private void FrmListeAchats_Load(object sender, EventArgs e)
         {
-           
+
             achatBindingSource.DataSource = db.Achats.Where(x => x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
-            
+
         }
 
         private void BtnExportExcel_Click(object sender, EventArgs e)
         {
-        
+
             string path = "Liste Achats.xlsx";
             gridControl1.ExportToXlsx(path);
             // Open the created XLSX file with the default application.
@@ -265,49 +259,37 @@ namespace Gestion_de_Stock.Forms
         {
 
             Achat A = gridView1.GetFocusedRow() as Achat;
-          
+
             db = new Model.ApplicationContext();
 
             Achat AchatDb = db.Achats.Find(A.Id);
 
 
-            if (AchatDb.EtatAchat != EtatAchat.Reglee && AchatDb.TypeAchat != TypeAchat.Avance)
+            if (AchatDb.EtatAchat != EtatAchat.Reglee && AchatDb.TypeAchat == TypeAchat.Service)
             {
-                if (AchatDb.TypeAchat == TypeAchat.Base && AchatDb.MontantReglement == 0)
-                {
-                    XtraMessageBox.Show("Vous ne pouvez pas ajouter un règlement qu'aprés la production!", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+               
+                    FormshowNotParent(Forms.FrmAjouterReglementService.InstanceFrmAjouterReglementService);
 
-                }
-                else
-                {
-                    FormshowNotParent(Forms.FrmAjouterReglementAchat.InstanceFrmAjouterReglementAchat);
-
-                    if (Application.OpenForms.OfType<FrmAjouterReglementAchat>().FirstOrDefault() != null)
+                    if (Application.OpenForms.OfType<FrmAjouterReglementService>().FirstOrDefault() != null)
                     {
-                        if (A.TypeAchat == TypeAchat.Base || A.TypeAchat == TypeAchat.Huile)
-                        {
-                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().layoutControlMtAPayer.Text = "Montant à Payer";
-                        }
-                        else if (A.TypeAchat == TypeAchat.Service)
-                        {
-                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().layoutControlMtAPayer.Text = "Montant Règlement";
-                        }
+                            Application.OpenForms.OfType<FrmAjouterReglementService>().First().layoutControlMtAPayer.Text = "Montant Règlement";
+                           
+                        Application.OpenForms.OfType<FrmAjouterReglementService>().First().TxtCodeAchat.Text = A.Numero;
+                        Application.OpenForms.OfType<FrmAjouterReglementService>().First().TxtAgriculteur.Text = A.Founisseur.FullName;
 
-                        Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtCodeAchat.Text = A.Id.ToString();
-                        Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAgriculteur.Text = A.Founisseur.FullName;
-                        
-                        Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantOperation.Text =  (Math.Truncate(A.MontantReglement * 1000m) / 1000m).ToString();
-                        Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAvance.Text = (Math.Truncate(A.MontantRegle * 1000m) / 1000m).ToString();
-                        Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtSolde.Text =  (Math.Truncate(A.ResteApayer * 1000m) / 1000m).ToString();
-                        Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantEncaisse.Text = (Math.Truncate(A.ResteApayer * 1000m) / 1000m).ToString();
+                        Application.OpenForms.OfType<FrmAjouterReglementService>().First().TxtMontantOperation.Text = (Math.Truncate(A.MontantReglement * 1000m) / 1000m).ToString();
+                        Application.OpenForms.OfType<FrmAjouterReglementService>().First().TxtAvance.Text = (Math.Truncate(A.MontantRegle * 1000m) / 1000m).ToString();
+                        Application.OpenForms.OfType<FrmAjouterReglementService>().First().TxtSolde.Text = (Math.Truncate(A.ResteApayer * 1000m) / 1000m).ToString();
+                        Application.OpenForms.OfType<FrmAjouterReglementService>().First().TxtMontantEncaisse.Text = (Math.Truncate(A.ResteApayer * 1000m) / 1000m).ToString();
                     }
-                }
+               
             }
             else
             {
-                XtraMessageBox.Show("Votre demande est non Autorisée ", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Votre demande est non autorisée ", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 achatBindingSource.DataSource = db.Achats.Where(x => x.TypeAchat != TypeAchat.Avance).OrderByDescending(x => x.Date).ToList();
-
+                return;
             }
 
 
@@ -319,7 +301,7 @@ namespace Gestion_de_Stock.Forms
 
             db = new Model.ApplicationContext();
 
-           List<HistoriquePaiementAchats> result = db.HistoriquePaiementAchats.Where(x => x.NumAchat.Equals(achat.Numero)).ToList(); 
+            List<HistoriquePaiementAchats> result = db.HistoriquePaiementAchats.Include("PersonnesPassagers").Where(x => x.NumAchat.Equals(achat.Numero)).ToList();
 
             FormshowNotParent(Forms.FrmHistoriquePaiementAchat.InstanceFrmHistoriquePaiementAchat);
 
@@ -363,7 +345,7 @@ namespace Gestion_de_Stock.Forms
 
 
 
-         if (AchatDb.TypeAchat == TypeAchat.Base)
+            if (AchatDb.TypeAchat == TypeAchat.Base)
 
             {
                 // ticket avec solde 
@@ -388,7 +370,7 @@ namespace Gestion_de_Stock.Forms
                 {
                     xrAchatTicket.Parameters["PU"].Value = AchatDb.PrixLitre;
                 }
-             
+
 
                 xrAchatTicket.Parameters["PU"].Visible = false;
 
@@ -398,7 +380,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -454,7 +436,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
             }
@@ -491,7 +473,7 @@ namespace Gestion_de_Stock.Forms
                 using (ReportPrintTool printTool = new ReportPrintTool(xrAchatTicket))
                 {
                     printTool.ShowPreviewDialog();
-               
+
                 }
 
 
@@ -506,7 +488,7 @@ namespace Gestion_de_Stock.Forms
 
             db = new Model.ApplicationContext();
 
-            Achat AchatDb = db.Achats.Include("Founisseur").FirstOrDefault(x=>x.Id==A.Id);
+            Achat AchatDb = db.Achats.Include("Founisseur").FirstOrDefault(x => x.Id == A.Id);
 
             Societe Ste = db.Societe.FirstOrDefault();
             FactureAchats FactureAchats = new FactureAchats();
@@ -514,12 +496,12 @@ namespace Gestion_de_Stock.Forms
             FactureAchats.Parameters["Adresse"].Value = Ste.Adresse;
             FactureAchats.Parameters["Tel"].Value = Ste.Telephone;
 
-           
+
 
             FactureAchats.Parameters["Date"].Value = AchatDb.Date.ToString("dd/MM/yyyy");
             FactureAchats.Parameters["CodeFacture"].Value = AchatDb.Numero;
             FactureAchats.Parameters["FounisseurFullName"].Value = AchatDb.Founisseur.FullName;
-            FactureAchats.Parameters["CinFounisseur"].Value = AchatDb.Founisseur.cin;          
+            FactureAchats.Parameters["CinFounisseur"].Value = AchatDb.Founisseur.cin;
             FactureAchats.Parameters["TelephneFounisseur"].Value = AchatDb.Founisseur.Tel;
 
             var convertisseur = ConvertisseurNombreEnLettre.Parametrage
@@ -540,64 +522,85 @@ namespace Gestion_de_Stock.Forms
 
         private void BtnReglement_Click(object sender, EventArgs e)
         {
-           
-                List<Achat> ListeGrid = new List<Achat>();
-                //int rowHandle3 = 0;
-                var Gride = System.Windows.Forms.Application.OpenForms.OfType<FrmListeAchats>().First().gridView1;
-                for (int j = 0; j < Gride.SelectedRowsCount; j++)
-                {
-                    if (Gride.GetSelectedRows()[j] >= 0)
-                        ListeGrid.Add(Gride.GetRow(Gride.GetSelectedRows()[j]) as Achat);
-                }
-                if (ListeGrid.Count == 0)
-                {
 
-                    XtraMessageBox.Show("Aucune ligne sélectionnée ", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            List<Achat> ListeGrid = new List<Achat>();
+            //int rowHandle3 = 0;
+            var Gride = System.Windows.Forms.Application.OpenForms.OfType<FrmListeAchats>().First().gridView1;
+            for (int j = 0; j < Gride.SelectedRowsCount; j++)
+            {
+                if (Gride.GetSelectedRows()[j] >= 0)
+                {
+                    ListeGrid.Add(Gride.GetRow(Gride.GetSelectedRows()[j]) as Achat);
+                }
+            }
+            if (ListeGrid.Count == 0)
+            {
+
+                XtraMessageBox.Show("Aucune ligne sélectionnée ", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+            else
+            {
+                if (ListeGrid.Any(a => a.EtatAchat== EtatAchat.Reglee))
+                {
+                    XtraMessageBox.Show("Une ou plusieurs lignes sont déjà réglées.", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further processing
+                }
+                if (ListeGrid.Any(a => a.TypeAchat == TypeAchat.Base && a.MontantReglement == 0))
+                {
+                    XtraMessageBox.Show("L'achat de type Base ne peut être réglé qu'après la production!", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (ListeGrid.Any(a => a.TypeAchat == TypeAchat.Service))
+                {
+                    XtraMessageBox.Show("Une ou plusieurs achats sont de type service!", "Application Configuration", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var firstAgriculteur = ListeGrid.First().Founisseur;
+
+                if (ListeGrid.Any(a => a.Founisseur != firstAgriculteur))
+                {
+                    XtraMessageBox.Show("Veuillez sélectionner des achats du même agriculteur", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
                 else
                 {
+                    FormshowNotParent(Forms.FrmAjouterReglementAchat.InstanceFrmAjouterReglementAchat);
 
-                    var firstAgriculteur = ListeGrid.First().Founisseur;
-
-                    if (ListeGrid.Any(a => a.Founisseur != firstAgriculteur))
+                    if (Application.OpenForms.OfType<FrmAjouterReglementAchat>().FirstOrDefault() != null)
                     {
-                        XtraMessageBox.Show("Veuillez sélectionner des achats du même agriculteur", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        FormshowNotParent(Forms.FrmAjouterReglementAchat.InstanceFrmAjouterReglementAchat);
-
-                        if (Application.OpenForms.OfType<FrmAjouterReglementAchat>().FirstOrDefault() != null)
+                        foreach (var Empolyeur in ListeGrid)
                         {
-                            foreach (var Empolyeur in ListeGrid)
+                            if (Empolyeur.TypeAchat == TypeAchat.Base || Empolyeur.TypeAchat == TypeAchat.Huile)
                             {
-                                if (Empolyeur.TypeAchat == TypeAchat.Base || Empolyeur.TypeAchat == TypeAchat.Huile)
-                                {
-                                    Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().layoutControlMtAPayer.Text = "Montant à Payer";
-                                }
-
-                                var achatIds = ListeGrid.Select(a => a.Numero.ToString()).ToArray();
-
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtCodeAchat.Text = string.Join(", ", achatIds);
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAgriculteur.Text = firstAgriculteur.FullName;
-                                decimal totalMontantReglement = ListeGrid.Sum(a => a.MontantReglement);
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantOperation.Text = (Math.Truncate(totalMontantReglement * 1000m) / 1000m).ToString();
-                                decimal totalAvance = ListeGrid.Sum(a => a.MontantRegle);
-                                decimal totalResteApayer = ListeGrid.Sum(a => a.ResteApayer);
-                                decimal totalMontantEncaisse = totalResteApayer; // Assuming this is intended to be the same as ResteApayer
-
-                                // Update the respective text fields
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAvance.Text = (Math.Truncate(totalAvance * 1000m) / 1000m).ToString();
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtSolde.Text = (Math.Truncate(totalResteApayer * 1000m) / 1000m).ToString();
-                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantEncaisse.Text = (Math.Truncate(totalMontantEncaisse * 1000m) / 1000m).ToString();
-
-
+                                Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().layoutControlMtAPayer.Text = "Montant à Payer";
                             }
-                        }
 
+                            var achatIds = ListeGrid.Select(a => a.Numero.ToString()).ToArray();
+
+                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtCodeAchat.Text = string.Join(", ", achatIds);
+                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAgriculteur.Text = firstAgriculteur.FullName;
+                            decimal totalMontantReglement = ListeGrid.Sum(a => a.MontantReglement);
+                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantOperation.Text = (Math.Truncate(totalMontantReglement * 1000m) / 1000m).ToString();
+                            decimal totalAvance = ListeGrid.Sum(a => a.MontantRegle);
+                            decimal totalResteApayer = ListeGrid.Sum(a => a.ResteApayer);
+                            decimal totalMontantEncaisse = totalResteApayer; // Assuming this is intended to be the same as ResteApayer
+
+                            // Update the respective text fields
+                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtAvance.Text = (Math.Truncate(totalAvance * 1000m) / 1000m).ToString();
+                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtSolde.Text = (Math.Truncate(totalResteApayer * 1000m) / 1000m).ToString();
+                            Application.OpenForms.OfType<FrmAjouterReglementAchat>().First().TxtMontantEncaisse.Text = (Math.Truncate(totalMontantEncaisse * 1000m) / 1000m).ToString();
+
+
+                        }
                     }
+
                 }
-            
+            }
+
         }
+
+        
     }
-}      
+}

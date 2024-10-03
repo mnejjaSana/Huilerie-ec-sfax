@@ -42,6 +42,7 @@
             this.colMontantRegle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colResteApayer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCommentaire = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Personne = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -120,7 +121,8 @@
             this.colMontantReglement,
             this.colMontantRegle,
             this.colResteApayer,
-            this.colCommentaire});
+            this.colCommentaire,
+            this.Personne});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsFind.AlwaysVisible = true;
@@ -220,6 +222,16 @@
             this.colCommentaire.Visible = true;
             this.colCommentaire.VisibleIndex = 6;
             // 
+            // Personne
+            // 
+            this.Personne.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Personne.AppearanceHeader.Options.UseFont = true;
+            this.Personne.Caption = "Personne";
+            this.Personne.FieldName = "PersonnesPassagers.FullName";
+            this.Personne.Name = "Personne";
+            this.Personne.Visible = true;
+            this.Personne.VisibleIndex = 7;
+            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -311,5 +323,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colResteApayer;
         public System.Windows.Forms.BindingSource historiquePaiementAchatsBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colCommentaire;
+        private DevExpress.XtraGrid.Columns.GridColumn Personne;
     }
 }

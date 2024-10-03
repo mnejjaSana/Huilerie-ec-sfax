@@ -38,8 +38,8 @@ namespace Gestion_de_Stock.Forms
 
         private void FrmListeDepenses_Load(object sender, EventArgs e)
         {
-            
-           depenseBindingSource.DataSource = db.Depenses.Where(x=> x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.Nature != NatureMouvement.ReglementImpo && x.ModePaiement.Equals("Espèce")).OrderByDescending(x => x.DateCreation).ToList();
+
+            depenseBindingSource.DataSource = db.Depenses.Where(x => x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.Nature != NatureMouvement.ReglementImpo && x.Nature != NatureMouvement.RéglementAchats && x.ModePaiement.Equals("Espèce")).OrderByDescending(x => x.DateCreation).ToList();
 
         }
 
@@ -64,7 +64,7 @@ namespace Gestion_de_Stock.Forms
             frm.Activate();
         }
 
-      
+
         private void dateDebut_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -80,11 +80,11 @@ namespace Gestion_de_Stock.Forms
             {
                 depenseBindingSource.DataSource = db.Depenses.Where(x => x.DateCreation.CompareTo(DateMin) >= 0 && x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.ModePaiement.Equals("Espèce")).ToList();
 
-                  
+
             }
             else
             {
-                depenseBindingSource.DataSource = db.Depenses.Where(x => x.DateCreation.CompareTo(DateMin) >= 0 && x.DateCreation.CompareTo(DateMaxJour) <= 0 && x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile  && x.ModePaiement.Equals("Espèce")).ToList();
+                depenseBindingSource.DataSource = db.Depenses.Where(x => x.DateCreation.CompareTo(DateMin) >= 0 && x.DateCreation.CompareTo(DateMaxJour) <= 0 && x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.ModePaiement.Equals("Espèce")).ToList();
             }
 
 
@@ -138,7 +138,7 @@ namespace Gestion_de_Stock.Forms
             //// Open the created XLSX file with the default application.
             //Process.Start(path);
 
-          
+
             gridControl1.ExportToXlsx(path);
             // Open the created XLSX file with the default application.
             Process.Start(path);
@@ -146,7 +146,8 @@ namespace Gestion_de_Stock.Forms
 
         private void BtnActualiser_Click(object sender, EventArgs e)
         {
-            depenseBindingSource.DataSource = db.Depenses.Where(x => x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.ModePaiement.Equals("Espèce")).OrderByDescending(x => x.DateCreation).ToList();
+            depenseBindingSource.DataSource = db.Depenses.Where(x => x.Nature != NatureMouvement.Prélèvement && x.Nature != NatureMouvement.AchatOlive && x.Nature != NatureMouvement.AvanceAgriculteur && x.Nature != NatureMouvement.AchatHuile && x.Nature != NatureMouvement.ReglementImpo && x.Nature != NatureMouvement.RéglementAchats && x.ModePaiement.Equals("Espèce")).OrderByDescending(x => x.DateCreation).ToList();
+
         }
     }
 }

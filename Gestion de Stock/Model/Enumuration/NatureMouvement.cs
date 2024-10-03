@@ -16,6 +16,7 @@ namespace Gestion_de_Stock.Model.Enumuration
         ClôtureCaisse = 6,
         ModificationService = 7,
         AchatHuile=8,
-        ReglementImpo = 9
+        ReglementImpo = 9,
+        RéglementAchats=10,
     }
 }
